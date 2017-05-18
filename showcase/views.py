@@ -5,4 +5,4 @@ from django.shortcuts import render
 
 def index(request):
     context = {}
-    return render(request, 'vendedor-profile-page.html', context)
+    return render(request, 'showcase.html', context)
