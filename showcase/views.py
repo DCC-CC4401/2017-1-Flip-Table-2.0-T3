@@ -6,3 +6,7 @@ from django.shortcuts import render
 def index(request):
     context = {}
     return render(request, 'showcase.html', context)
+
+def item_new(request):
+    context = {}
+    return render(request, 'item_new.html', context)

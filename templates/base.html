@@ -37,8 +37,8 @@
                 <img class="circle" src="{% static 'img/AvatarPenguin.png' %}">
 
                 <span class="white-text name">Invitado</span>
-                <i class="material-icons right grey-text text-lighten-2"
-                   style="position: absolute; bottom: 0.2em; right: 0.2em; padding: 0 0 !important;">settings</i>
+                <a href="{% url 'account:edit' %}"><i class="material-icons right grey-text text-lighten-2"
+                   style="position: absolute; bottom: 0.2em; right: 0.2em; padding: 0 0 !important;">settings</i></a>
             </div>
         </li>
         <li><a href="{% url 'map:index' %}"><i class="material-icons">home</i>Inicio</a></li>

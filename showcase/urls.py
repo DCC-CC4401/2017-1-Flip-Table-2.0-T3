@@ -23,4 +23,15 @@ urlpatterns = [
 
     # /showcase/
     url(r'^$', views.index, name='index'),
+
+
+    # /showcase/<user_nick>/
+    #url(r'^$', views.index, name='index'),
+
+
+    # /showcase/item/new
+    url(r'^item_new/$', views.item_new, name='item_new'),
+
+    # /showcase/item/<item_id>/
+    # url(r'^$', views.index, name='index'),
 ]

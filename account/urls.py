@@ -22,7 +22,7 @@ app_name = 'account'
 urlpatterns = [
 
     # /account/
-    # url(r'^$', views.index, name='index'),
+     url(r'^$', views.edit, name='edit'),
 
     # /account/login
     url(r'^login/$', views.login, name='login'),
@@ -30,6 +30,6 @@ urlpatterns = [
     # /account/register
     url(r'^register/$', views.register, name='register'),
 
-    # /account/<user_id>/
-    #url(r'^(?P<user_id>[0-9]+)/$', views.detail, name='detail'),
+    # /account/<user_nick>/
+    #url(r'^(?P<user_nick>[0-9]+)/$', views.edit, name='edit'),
 ]
