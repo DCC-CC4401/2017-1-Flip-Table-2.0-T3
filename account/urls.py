@@ -24,11 +24,20 @@ urlpatterns = [
     # /account/
      url(r'^$', views.edit, name='edit'),
 
-    # /account/login
-    url(r'^login/$', views.login, name='login'),
+    # # /account/login
+    # url(r'^login/$', views.login, name='login'),
 
     # /account/register
     url(r'^register/$', views.register, name='register'),
+
+    # /account/register/client
+    url(r'^register/client/$', views.register_client, name='register_client'),
+
+    # /account/register/peddler
+    url(r'^register/peddler/$', views.register_peddler, name='register_peddler'),
+
+    # /account/register/established
+    url(r'^register/established/$', views.register_established, name='register_established'),
 
     # /account/<user_nick>/
     #url(r'^(?P<user_nick>[0-9]+)/$', views.edit, name='edit'),

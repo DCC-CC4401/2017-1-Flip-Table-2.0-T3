@@ -1,0 +1,86 @@
+{% extends 'register_base.html' %}
+{% block body %}
+    {% load staticfiles %}
+    {{ form.non_field_errors }}
+    {% load widget_tweaks %}
+    <div class="row">
+        <div class="input-field col s6">
+            {{ form.first_name.errors }}
+            <label for="{{ form.first_name.id_for_label }}">Nombre</label>
+            {{ form.first_name|attr:"autofocus" }}
+        </div>
+        <div class="input-field col s6">
+            {{ form.last_name.errors }}
+            <label for="{{ form.last_name.id_for_label }}">Apellido</label>
+            {{ form.last_name }}
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='input-field col s12 m12'>
+            {{ form.username.errors }}
+            <label style="text-align: center" for="{{ form.username.id_for_label }}">Nombre de
+                usuario</label>
+            {{ form.username }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class='input-field col s12 m12'>
+            {{ form.email.errors }}
+            <label style="text-align: center" for="{{ form.email.id_for_label }}">Ingresa tu
+                e-mail</label>
+            {{ form.email }}
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='input-field col s12 m12'>
+            {{ form.password1.errors }}
+            <label style="text-align: center" for="{{ form.password1.id_for_label }}">Ingresa tu
+                contraseña</label>
+            {{ form.password1 }}
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='input-field col s12 m12'>
+            {{ form.password2.errors }}
+            <label style="text-align: center" for="{{ form.password2.id_for_label }}">Repite tu
+                contraseña</label>
+            {{ form.password2 }}
+        </div>
+    </div>
+
+    <div class='row'>
+        <p>Cambiar avatar:</p>
+        <input class="with-gap" name="group1" type="radio" id="test1"/>
+        <label for="test1"><img class="circle" style="max-width: 50px;"
+                                src="{% static 'img/AvatarVendedor1.png' %}"></label>
+        <input class="with-gap" name="group1" type="radio" id="test2"/>
+        <label for="test2"><img class="circle" style="max-width: 50px;"
+                                src="{% static 'img/AvatarVendedor2.png' %}"></label>
+        <input class="with-gap" name="group1" type="radio" id="test3"/>
+        <label for="test3"><img class="circle" style="max-width: 50px;"
+                                src="{% static 'img/AvatarVendedor3.png' %}"></label>
+        <input class="with-gap" name="group1" type="radio" id="test4"/>
+        <label for="test4"><img class="circle" style="max-width: 50px;"
+                                src="{% static 'img/AvatarVendedor4.png' %}"></label>
+    </div>
+
+    <div class='row'>
+        <button type='submit' name='btn_login'
+                class='col l6 offset-l3 btn btn-large waves-effect teal'>
+            Registrarse
+        </button>
+    </div>
+
+{% endblock %}
+
+{% block client %}
+    value="#" disabled selected
+{% endblock %}
+
+{% block default %}
+{% endblock %}

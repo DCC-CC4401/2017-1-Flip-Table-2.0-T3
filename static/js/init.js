@@ -3,5 +3,18 @@
 
         $('.button-collapse').sideNav();
 
-    }); // end of document ready
-})(jQuery); // end of jQuery name space
+    });
+
+    $(function () {
+
+        $('select').material_select();
+
+    });
+
+
+})(jQuery);
+
+
+
+
+

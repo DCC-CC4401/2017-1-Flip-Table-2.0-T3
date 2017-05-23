@@ -248,3 +248,13 @@ header, main, footer {
         padding-left: 0;
     }
 }
+
+.input-field.col label {
+    left: 0.75rem;
+    right: 0.75rem;
+}
+
+input[type=checkbox] {
+    .class
+    class: "filled-in"
+}
