@@ -10,6 +10,7 @@ class ClientCreateForm(UserCreationForm):
         super(ClientCreateForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
+        self.fields['first_name'].widget.attrs.update({'autofocus': 'autofocus'})
 
     class Meta:
         model = User
@@ -34,6 +35,11 @@ class PeddlerCreateForm(UserCreationForm):
         super(PeddlerCreateForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
+        self.fields['first_name'].widget.attrs.update({'autofocus': 'autofocus'})
+        self.fields['cash'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['credit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['debit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['social'].widget.attrs.update({'class': 'filled-in'})
 
     class Meta:
         model = User
@@ -61,6 +67,11 @@ class EstablishedCreateForm(UserCreationForm):
         super(EstablishedCreateForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
+        self.fields['first_name'].widget.attrs.update({'autofocus': 'autofocus'})
+        self.fields['cash'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['credit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['debit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['social'].widget.attrs.update({'class': 'filled-in'})
 
     class Meta:
         model = User

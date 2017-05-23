@@ -2,7 +2,6 @@
 {% block body %}
     {% load staticfiles %}
     {{ form.non_field_errors }}
-    {% load widget_tweaks %}
     <div class="row">
         <div class="input-field col s6">
             {{ form.first_name.errors }}
@@ -71,23 +70,23 @@
         Seleccione sus formas de pago:
         <p>
             {{ form.cash.errors }}
-            {{ form.cash|add_class:"filled-in" }}
+            {{ form.cash }}
             <label for="{{ form.cash.id_for_label }}">Efectivo</label>
         </p>
         <p>
             {{ form.credit.errors }}
-            {{ form.credit|add_class:"filled-in" }}
+            {{ form.credit }}
             <label for="{{ form.credit.id_for_label }}">Tarjeta de Crédito</label>
 
         </p>
         <p>
             {{ form.debit.errors }}
-            {{ form.debit|add_class:"filled-in" }}
+            {{ form.debit }}
             <label for="{{ form.debit.id_for_label }}">Tarjeta de Débito</label>
         </p>
         <p>
             {{ form.social.errors }}
-            {{ form.social|add_class:"filled-in" }}
+            {{ form.social }}
             <label for="{{ form.social.id_for_label }}">Tarjeta Junaeb</label>
         </p>
     </div>

@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 
 
-    # /showcase/<user_nick>/
+    # /showcase/<user_id>/
     #url(r'^$', views.index, name='index'),
 
 
