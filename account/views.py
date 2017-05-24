@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm
+from django.contrib.auth import authenticate, login as django_login
 
 
 # Create your views here.
@@ -10,13 +11,13 @@ def edit(request):
 
 
 def login(request):
-    context = {}
-    return render(request, 'login.html', context)
-
-
-# def register(request):
-#     context = {}
-#     return render(request, 'register.html', context)
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        django_login(request, user)
+        return redirect('map:index')
+    return render(request, 'register_client.html', {'form': form})
 
 
 def new_item(request):

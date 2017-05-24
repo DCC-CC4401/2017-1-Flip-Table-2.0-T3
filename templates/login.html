@@ -12,11 +12,11 @@
                  style="margin-left: 2%; margin-right: 2%; padding: 30px 30px 0 30px; border: 1px solid #EEE;">
 
                 <form class="col s12" method="post">
-
+                    {% csrf_token %}
                     <div class='row'>
                         <div class='input-field col s12 m12'>
                             <input class='validate' type='email' name='email' id='email'/>
-                            <label style="text-align: center;" for='email'>Ingresa tu correo</label>
+                            <label style="text-align: center;" for='{{ form.email.id_for_label }}'>Ingresa tu correo</label>
                         </div>
                     </div>
 
