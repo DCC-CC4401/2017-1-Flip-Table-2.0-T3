@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.views.generic import View
-from .models import User
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -25,6 +25,5 @@ class ShowcaseView(generic.ListView):
 
 
     def get_queryset(self):
-        id = self.kwargs['seller_id']
-        user = User.objects.get(id=11)
-        return user.dish_set
+        user = User.objects.get(id=self.kwargs['seller_id'])
+        return user.dish_set.all()

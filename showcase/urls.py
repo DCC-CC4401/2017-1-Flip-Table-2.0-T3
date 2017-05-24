@@ -26,10 +26,10 @@ urlpatterns = [
 
 
     # /showcase/<seller_id>/
-    url(r'^(?P<seller_id>[0-9]+)/$', views.ShowcaseView.as_view, name='showcase'),
+    url(r'^(?P<seller_id>[0-9]+)/$', views.ShowcaseView.as_view(), name='showcase'),
 
 
-    # /showcase/item/new
+    # /showcase/item_new
     url(r'^item_new/$', views.item_new, name='item_new'),
 
     # /showcase/item/<item_id>/
