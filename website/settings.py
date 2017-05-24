@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'widget_tweaks',
     'account.apps.AccountConfig',
     'map.apps.MapConfig',
     'showcase.apps.ShowcaseConfig',
