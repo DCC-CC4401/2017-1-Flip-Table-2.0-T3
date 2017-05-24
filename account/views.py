@@ -1,12 +1,5 @@
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.views import generic
-from django.views.generic import View
 from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm
-from django.contrib import messages
-from django.db import transaction
 
 
 # Create your views here.
@@ -16,9 +9,9 @@ def edit(request):
     return render(request, 'account_edit.html', context)
 
 
-# def login(request):
-#     context = {}
-#     return render(request, 'login.html', context)
+def login(request):
+    context = {}
+    return render(request, 'login.html', context)
 
 
 # def register(request):

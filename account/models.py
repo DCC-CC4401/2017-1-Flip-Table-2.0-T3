@@ -9,7 +9,7 @@ class Client(models.Model):
     image = models.FileField(null=True)
 
     def __str__(self):
-        return "Client" + ' - ' + self.user.username
+        return "Client - " + self.user.username
 
 
 class Peddler(models.Model):
@@ -21,7 +21,7 @@ class Peddler(models.Model):
     social = models.BooleanField(default=False)
 
     def __str__(self):
-        return "Peddler" + ' - ' + self.user.username
+        return "Peddler - " + self.user.username
 
 
 class Established(models.Model):
@@ -35,4 +35,4 @@ class Established(models.Model):
     end = models.TimeField()
 
     def __str__(self):
-        return "Established" + ' - ' + self.user.username
+        return "Established - " + self.user.username

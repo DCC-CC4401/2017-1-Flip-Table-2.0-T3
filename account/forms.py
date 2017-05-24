@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import *
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import Client, Peddler, Established
 from django.contrib.admin import widgets
