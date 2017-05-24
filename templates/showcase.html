@@ -114,52 +114,43 @@
                     <div class="tab-content col s12">
 
 
-                        {% if dishes %}
-                            {% for dish in dishes %}
+                        {% for dish in dishes %}
 
-                                <div class="col s6 m6 l4">
-                                    <div class="container">
-                                        <div class="card z-depth-1">
-                                            <div class="teal lighten-2 card-image waves-effect waves-block waves-light">
-                                                <img class="activator responsive-img center-block"
-                                                     style="max-width: 30%; margin-top:20px; margin-bottom:20px;"
-                                                     src="{% static 'img/rice.png' %}">
-                                            </div>
-                                            <div class="card-content">
+                            <div class="col s6 m6 l4">
+                                <div class="container">
+                                    <div class="card z-depth-1">
+                                        <div class="teal lighten-2 card-image waves-effect waves-block waves-light">
+                                            <img class="activator responsive-img center-block"
+                                                 style="max-width: 30%; margin-top:20px; margin-bottom:20px;"
+                                                 src="{% static 'img/rice.png' %}">
+                                        </div>
+                                        <div class="card-content">
                                                     <span class="card-title activator grey-text text-darken-4">{{ dish.name }}<i
                                                             class="material-icons right">more_vert</i></span>
-                                                <p><a class="teal-text">{{ dish.price }}</a></p>
-                                            </div>
-                                            <div class="card-reveal">
+                                            <p><a class="teal-text">{{ dish.price }}</a></p>
+                                        </div>
+                                        <div class="card-reveal">
                                                     <span class="card-title grey-text text-darken-4">{{ dish.name }}<i
                                                             class="material-icons right">close</i></span>
-                                                <ul>
-                                                    <li>Precio: <a class="green-text light-green-text">{{ dish.price }}</a>
-                                                    </li>
-                                                    <li>Categoria: Almuerzos</li>
-                                                    <li>Stock: {{ dish.stock }}</li>
-                                                    <li>Descripción: {{ dish.description }}
-                                                        <p class="right-align"><a
-                                                                class="waves-effect waves-light"
-                                                                href="{{ dish.image.url }}">Ver imagen</a></p>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <ul>
+                                                <li>Precio: <a class="green-text light-green-text">{{ dish.price }}</a>
+                                                </li>
+                                                <li>Categoria: Almuerzos</li>
+                                                <li>Stock: {{ dish.stock }}</li>
+                                                <li>Descripción: {{ dish.description }}
+                                                    <p class="right-align"><a
+                                                            class="waves-effect waves-light"
+                                                            href="{{ dish.image.url }}">Ver imagen</a></p>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-
-                            {% endfor %}
-                        {% else %}
-                            <div class='row center'>
-                                <button name='btn_login'
-                                        class='btn btn-large waves-effect teal'>
-                                    Agregar plato
-                                </button>
                             </div>
-                        {% endif %}
 
+                        {% endfor %}
 
+                        <!-- Only for reference, delete in later version-->
                         <div class="col s6 m6 l4">
                             <div class="container">
                                 <div class="card z-depth-1">
