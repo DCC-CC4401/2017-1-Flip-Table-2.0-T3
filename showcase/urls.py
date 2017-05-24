@@ -25,8 +25,8 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 
 
-    # /showcase/<user_id>/
-    #url(r'^$', views.index, name='index'),
+    # /showcase/<seller_id>/
+    url(r'^(?P<seller_id>[0-9]+)/$', views.ShowcaseView.as_view, name='showcase'),
 
 
     # /showcase/item/new
