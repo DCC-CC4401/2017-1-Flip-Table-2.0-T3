@@ -19,11 +19,17 @@ def item_new(request):
     return render(request, 'item_new.html', context)
 
 
-class ShowcaseView(generic.ListView):
-    template_name = 'showcase.html'
-    context_object_name = 'dishes'  # <!-- default name: object_list -->
+# class ShowcaseView(generic.ListView):
+#     template_name = 'showcase.html'
+#     context_object_name = 'dishes'  # <!-- default name: object_list -->
+#
+#     def get_queryset(self):
+#         user = User.objects.get(id=self.kwargs['seller_id'])
+#         return user.dish_set.all()
 
 
-    def get_queryset(self):
-        user = User.objects.get(id=self.kwargs['seller_id'])
-        return user.dish_set.all()
+def showcase(request, seller_id):
+    user = User.objects.get(id=seller_id)
+    dishes = user.dish_set.all()
+    context = {'dishes': dishes}
+    return render(request, 'showcase.html', context)
