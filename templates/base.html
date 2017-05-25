@@ -43,16 +43,33 @@
         </li>
         <li><a href="{% url 'map:index' %}"><i class="material-icons">home</i>Inicio</a></li>
         <li><a href="{% url 'account:register' %}"><i class="material-icons">account_circle</i>Iniciar Sesión</a></li>
-        <!--<li><a href=" % url 'login' %}"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a></li>-->
-        <!--<li><div class="divider"></div></li>
+
+        <!--
+        <li><a href="% url 'login' %}"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a></li>
+        -->
+
+
+        <!--
+        <li><div class="divider"></div></li>
+        -->
+
+        <!-- Boton de vandedor activo -->
+        <!--
+        {%  block active %}
         <li><a class="subheader">Activo</a></li>
         <li>
-            <div class="switch" style="margin-left: 80px;">
+            <div class="switch" style="margin-left: 10px;">
                 <label>
-                    No<input type="checkbox"><span class="lever"></span>Si
+                    <input type="checkbox"><span class="lever"></span
                 </label>
             </div>
         </li>
+        {% endblock %}
+        -->
+
+        <!-- Boton de filtros -->
+        <!--
+        {% block filter %}
         <li><a class="subheader">Filtros</a></li>
         <li>
             <div class="switch" style="margin-left: 10px;">
@@ -74,7 +91,11 @@
                     <input type="checkbox"><span class="lever"></span>Almuerzos
                 </label>
             </div>
-        </li>-->
+        </li>
+        {% endblock %}
+        -->
+
+
     </ul>
 </div>
 
