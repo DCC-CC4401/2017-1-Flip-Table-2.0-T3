@@ -6,6 +6,7 @@ from django.views import generic
 from django.views.generic import View
 from django.contrib.auth.models import User
 
+from account.models import Client, Peddler, Established
 
 # Create your views here.
 
@@ -30,6 +31,12 @@ def item_new(request):
 
 def showcase(request, seller_id):
     user = User.objects.get(id=seller_id)
+    try:
+        seller = Peddler.objects.get(user=user)
+    except:
+        seller = Established.objects.get(user=user)
+    isPeddler = seller.__class__ == Peddler
+    img = seller.image
     dishes = user.dish_set.all()
-    context = {'dishes': dishes}
+    context = {'dishes': dishes, 'user': user,'isPeddler': isPeddler,'seller': seller,'image': img}
     return render(request, 'showcase.html', context)
