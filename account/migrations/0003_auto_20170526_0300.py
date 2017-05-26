@@ -60,13 +60,17 @@ def load_estabished(apps, schema_editor):
     established2.save()
 
 def delete_client(apps, schema_editor):
-    User.objects.all().delete()
+    User.objects.get(username='alumno1').delete()
+    User.objects.get(username='alumno2').delete()
 
 def delete_peddler(apps, schema_editor):
-    User.objects.all().delete()
+    User.objects.get(username='lunchbox').delete()
+    User.objects.get(username='chino').delete()
+    User.objects.get(username='sushi').delete()
 
 def delete_established(apps, schema_editor):
-    User.objects.all().delete()
+    User.objects.get(username='pepe').delete()
+    User.objects.get(username='empanada').delete()
 
 class Migration(migrations.Migration):
 
