@@ -1,10 +1,12 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.views.generic import View
 from django.contrib.auth.models import User
+
+from account.models import Client, Peddler, Established
 
 
 # Create your views here.
@@ -30,6 +32,13 @@ def item_new(request):
 
 def showcase(request, seller_id):
     user = User.objects.get(id=seller_id)
+    seller = Peddler.objects.all().filter(user=user).first()
+    is_peddler = True
+    if seller is None:
+        seller = get_object_or_404(Established, user=user)
+        is_peddler = False
+
     dishes = user.dish_set.all()
-    context = {'dishes': dishes}
+    context = {'dishes': dishes, 'is_peddler': is_peddler, 'user': user, 'selller': seller}
+
     return render(request, 'showcase.html', context)
