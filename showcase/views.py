@@ -1,6 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.views.generic import View
@@ -34,7 +34,7 @@ def showcase(request, seller_id):
     try:
         seller = Peddler.objects.get(user=user)
     except:
-        seller = Established.objects.get(user=user)
+        seller = get_object_or_404(Established,user=user)
     isPeddler = seller.__class__ == Peddler
     img = seller.image
     dishes = user.dish_set.all()
