@@ -49,9 +49,24 @@
                             <p class="medium-small flow-text light-green-text">Disponible</p>
                         </div>
                         <div class="col s3 l2 hide-on-med-and-down center-align">
-                            <h4 class=" grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de pago
+                            <h4 class=" grey-text flow-text text-darken-4 center" style="font-size: 1.3rem;">Formas de pago
                             </h4>
-                            <p class="medium-small flow-text grey-text">Efectivo</p>
+                                {% if seller.cash %}
+                                    <p class="medium-small flow-text grey-text center">Efectivo</p>
+                                {% else %}
+                                {% endif %}
+                                {% if seller.credit %}
+                                    <p class="medium-small flow-text grey-text center">Credito</p>
+                                {% else %}
+                                {% endif %}
+                                {% if seller.debit %}
+                                    <p class="medium-small flow-text grey-text center">Debito</p>
+                                {% else %}
+                                {% endif %}
+                                {% if seller.social %}
+                                    <p class="medium-small flow-text grey-text center">Junaeb</p>
+                                {% else %}
+                                {% endif %}
                         </div>
                         <div class="col s3 l2 hide-on-med-and-down center-align">
                             <div class="switch" style="margin-left: 10px;">
@@ -74,14 +89,14 @@
 
                 <div class="row show-on-medium-and-down hide-on-med-and-up">
                     <div class="col s4 offset-s2">
-                        <h4 class="card-title grey-text flow-text text-darken-4">{{ user.first_name }} {{ user.last_name }}z</h4>
-                        <p class="medium-small flow-text grey-text">
+                        <h4 class="card-title grey-text flow-text text-darken-4 center">{{ user.first_name }} {{ user.last_name }}</h4>
+                        <p class="medium-small flow-text grey-text center">
                             {% if isPeddler%}
                                 Vendedor Ambulante
                             {% else %}
                                 Vendedor Fijo
                             {% endif %}</p>
-                        <p class="flow-text text-darken-4" style="font-size: 0.88rem;">
+                        <p class="flow-text text-darken-4 center" style="font-size: 0.88rem;">
                             {% if isPeddler %}
                             {% else %}
                                 Horario: <a class="light-green-text">{{ seller.start }} - {{ seller.end }}</a>
@@ -103,8 +118,23 @@
                     </div>
 
                     <div class="col s3 m2 l12 offset-s1"> <!--offset-s2-->
-                        <p class=" grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de pago</p>
-                        <p class="medium-small flow-text grey-text">Efectivo</p>
+                        <p class=" grey-text flow-text text-darken-4 center" style="font-size: 1.3rem;">Formas de pago</p>
+                        {% if seller.cash %}
+                            <p class="medium-small flow-text grey-text center">Efectivo</p>
+                        {% else %}
+                        {% endif %}
+                        {% if seller.credit %}
+                            <p class="medium-small flow-text grey-text center">Credito</p>
+                        {% else %}
+                        {% endif %}
+                        {% if seller.debit %}
+                            <p class="medium-small flow-text grey-text center">Debito</p>
+                        {% else %}
+                        {% endif %}
+                        {% if seller.social %}
+                            <p class="medium-small flow-text grey-text center">Junaeb</p>
+                        {% else %}
+                        {% endif %}
                     </div>
 
                     <!--<div class="col s3 offset-s2 offset-l10">
