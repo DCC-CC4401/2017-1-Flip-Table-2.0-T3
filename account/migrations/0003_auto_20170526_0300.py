@@ -59,6 +59,15 @@ def load_estabished(apps, schema_editor):
     established2 = Established(user=user7, start='10:20', end='20:34')
     established2.save()
 
+def delete_client(apps, schema_editor):
+    User.objects.all().delete()
+
+def delete_peddler(apps, schema_editor):
+    User.objects.all().delete()
+
+def delete_established(apps, schema_editor):
+    User.objects.all().delete()
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -66,7 +75,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(load_client),
-        migrations.RunPython(load_paddler),
-        migrations.RunPython(load_estabished),
+        migrations.RunPython(load_client, delete_client),
+        migrations.RunPython(load_paddler, delete_peddler),
+        migrations.RunPython(load_estabished, delete_established),
     ]

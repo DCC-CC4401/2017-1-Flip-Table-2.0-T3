@@ -36,6 +36,9 @@ def load_dish(apps, schema_editor):
     dish7 = Dish(user=pepe,name='lasagna',image='static/img/rice.png',description='Lasagna cacera con pino de lomo liso y pasas carozzi', stock=3,price=2300)
     dish7.save()
 
+def delete_dishes(apps, schema_editor):
+    Dish.objects.all().delete()
+
 def load_tag(apps, schema_editor):
     tag1 = Tag(name='pastas')
     tag1.save()
@@ -55,6 +58,9 @@ def load_tag(apps, schema_editor):
     tag6 = Tag(name='bajo en calorias')
     tag6.save()
 
+def delete_tags(apps, schema_editor):
+    Tag.objects.all().delete()
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -63,6 +69,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(load_dish),
-        migrations.RunPython(load_tag),
+        migrations.RunPython(load_dish,delete_dishes),
+        migrations.RunPython(load_tag,delete_tags),
     ]
