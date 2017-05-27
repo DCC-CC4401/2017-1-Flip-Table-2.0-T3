@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.FileField(null=True)
+    image = models.ImageField()
 
     def __str__(self):
         return "Client - " + self.user.username
@@ -12,7 +12,7 @@ class Client(models.Model):
 
 class Peddler(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.FileField(null=True)
+    image = models.ImageField()
     cash = models.BooleanField(default=True)
     credit = models.BooleanField(default=False)
     debit = models.BooleanField(default=False)
@@ -24,7 +24,7 @@ class Peddler(models.Model):
 
 class Established(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.FileField(null=True)
+    image = models.ImageField()
     cash = models.BooleanField(default=True)
     credit = models.BooleanField(default=False)
     debit = models.BooleanField(default=False)
