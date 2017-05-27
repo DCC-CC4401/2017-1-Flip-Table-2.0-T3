@@ -15,7 +15,7 @@
                 </div>
                 <div class="row show-on-small">
                     <a class="card-profile-image-small">
-                        <img src="{{ seller.image.url }}" alt="profile image"
+                        <img src="{#  #}{ seller.image.url }}" alt="profile image"
                              class="circle z-depth-2 responsive-img activator">
                     </a>
                 </div>
@@ -25,13 +25,16 @@
                         <div class="col s6 m3 l3 center-align">
                             <h4 class="card-title grey-text flow-text text-darken-4 offset-s3 center">{{ user.first_name }} {{ user.last_name }}</h4>
                             <p class="medium-small flow-text grey-text center">
-                                {% if isPeddler%}
+                                {% if isPeddler %}
                                     Vendedor Ambulante
                                 {% else %}
                                     Vendedor Fijo
                                 {% endif %}
                             </p>
                             {% if isPeddler %}
+                                <!-- if activo
+                                        horario inicio - horario fin
+                                     end if-->
                             {% else %}
                                 <p class="flow-text text-darken-4 center" style="font-size: 0.88rem;">
                                     Horario: <a class="light-green-text">{{ seller.start }} - {{ seller.end }}</a>
@@ -43,7 +46,8 @@
                             <p class="medium-small flow-text light-green-text">Disponible</p>
                         </div>
                         <div class="col s6 m3 l3 center-align">
-                            <h4 class=" grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de pago</h4>
+                            <h4 class=" grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de
+                                pago</h4>
                             {% if seller.cash %}
                                 <p class="medium-small flow-text grey-text center">Efectivo</p>
                             {% else %}
@@ -73,14 +77,12 @@
                         </div>
                     </div>
 
-                    <div class="col s3 l2 hide-on-med-and-down right-align">
+                    <div class="col s3 l2 right-align">
                         <a class="btn-floating activator waves-effect waves-light darken-2">
                             <i class="material-icons">mode_edit</i>
                         </a>
                     </div>
                 </div>
-                
-
 
 
             </div>
@@ -104,6 +106,7 @@
                                                     <span class="card-title activator grey-text text-darken-4">{{ dish.name }}<i
                                                             class="material-icons right">more_vert</i></span>
                                             <p><a class="teal-text">{{ dish.price }}</a></p>
+
                                         </div>
                                         <div class="card-reveal">
                                                     <span class="card-title grey-text text-darken-4">{{ dish.name }}<i
@@ -273,9 +276,9 @@
                     </div>
 
                     <div class='row center'>
+                        <!-- al volver de agregar un producto, vuelve a showcase y no al vendedor -->
                         <a class=' btn btn-large waves-effect button teal'
-                           href="#">Agregar Item</a>
-                        <!--href="% url 'gestionproductos' %}">Agregar Item</a-->
+                           href="{% url 'showcase:item_new' %}">Agregar Item</a>
                     </div>
                 </div>
             </div>
