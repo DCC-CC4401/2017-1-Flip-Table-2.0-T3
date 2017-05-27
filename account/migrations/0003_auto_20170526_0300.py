@@ -76,6 +76,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('account', '0002_auto_20170524_1438'),
+        ('auth', '0008_alter_user_username_max_length')
     ]
 
     operations = [
