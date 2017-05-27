@@ -291,7 +291,7 @@
     "pk": 3,
     "fields": {
       "user": 5,
-      "image": "",
+      "image": "default/AvatarVendedor4.png",
       "cash": true,
       "credit": false,
       "debit": false,

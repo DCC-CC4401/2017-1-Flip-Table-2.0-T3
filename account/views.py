@@ -1,23 +1,53 @@
 from django.shortcuts import render, redirect
-from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm
+from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm, ClientUpdateForm
+from .models import Peddler, Established
 
 
 # Create your views here.
 
 def edit(request):
-    args = {}
-
-    if request.method == 'POST':
-        form = UpdateProfile(request.POST)
-        form.actual_user = request.user
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('update_profile_success'))
+    if request.user.__class__ == Peddler:
+        return update_peddler(request)
+    elif request.user.__class__ == Established:
+        return update_established(request)
     else:
-        form = UpdateProfile()
+        return update_client(request)
 
-    args['form'] = form
-    return render(request, 'registration/update_profile.html', args)
+def update_client(request):
+    if request.method == 'POST':
+        form = ClientUpdateForm(request.POST)
+        if form.is_valid():
+            user, user_profile = form.save()
+            user.save()
+            return redirect('index.html')
+        else:
+            print("NOOOOOOOOOOOOOOOOOOOOO")
+            return redirect('caca.html')
+    else:
+        form = ClientCreateForm()
+    return render(request, 'account_edit.html', {'form': form})
+
+def update_peddler(request):
+    if request.method == 'POST':
+        form = ClientUpdateForm(request.POST)
+        if form.is_valid():
+            user, user_profile = form.save()
+            user.save()
+            return redirect('account_edit.html')
+    else:
+        form = ClientCreateForm()
+    return render(request, 'account_edit.html', {'form': form})
+
+def update_established(request):
+    if request.method == 'POST':
+        form = ClientUpdateForm(request.POST)
+        if form.is_valid():
+            user, user_profile = form.save()
+            user.save()
+            return redirect('account_edit.html')
+    else:
+        form = ClientCreateForm()
+    return render(request, 'account_edit.html', {'form': form})
 
 
 def new_item(request):
