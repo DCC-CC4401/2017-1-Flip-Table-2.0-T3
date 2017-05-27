@@ -1,0 +1,216 @@
+- model: auth.user
+  pk: 1
+  fields:
+    password: 12345678abcd
+    last_login: null
+    is_superuser: false
+    username: alumno1
+    first_name: Tibo
+    last_name: Swy
+    email: tsy@bla.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-27 05:46:12.118000+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: 12345678abcd
+    last_login: null
+    is_superuser: false
+    username: alumno2
+    first_name: pepe
+    last_name: pepe2
+    email: pepe@pepe.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-27 05:46:12.149000+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 3
+  fields:
+    password: 12345678abcd
+    last_login: null
+    is_superuser: false
+    username: chino
+    first_name: diego
+    last_name: diego2
+    email: diego@diego.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-27 05:46:12.150000+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 4
+  fields:
+    password: 12345678abcd
+    last_login: null
+    is_superuser: false
+    username: lunchbox
+    first_name: juan
+    last_name: juan2
+    email: juan@juan.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-27 05:46:12.152000+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 5
+  fields:
+    password: 12345678abcd
+    last_login: null
+    is_superuser: false
+    username: sushi
+    first_name: lucas
+    last_name: lucas2
+    email: lucas@lucas.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-27 05:46:12.153000+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 6
+  fields:
+    password: 12345678abcd
+    last_login: null
+    is_superuser: false
+    username: pepe
+    first_name: pedro
+    last_name: pedro2
+    email: pedro@pedro.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-27 05:46:12.154000+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 7
+  fields:
+    password: 12345678abcd
+    last_login: null
+    is_superuser: false
+    username: empanada
+    first_name: carlos
+    last_name: carlos2
+    email: carlos@carlos.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-27 05:46:12.157000+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 8
+  fields:
+    password: pbkdf2_sha256$36000$zZ2rYkl3aaJ7$cElRYTlRmLT5bthvAIMXA/QZzyKomFfdRGDsVSsNGyE=
+    last_login: 2017-05-27 07:43:25.945000+00:00
+    is_superuser: false
+    username: diegobano
+    first_name: diego
+    last_name: bano
+    email: diego.bano@ug.uchile.cl
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-27 06:53:12.435000+00:00
+    groups: []
+    user_permissions: []
+- model: showcase.dish
+  pk: 1
+  fields:
+    user: 3
+    name: carne mongoliana
+    image: static/img/rice.png
+    description: "La carne mongoliana m\xE1s rica que hayan probado"
+    stock: 20
+    price: 2990
+    tags: []
+- model: showcase.dish
+  pk: 2
+  fields:
+    user: 3
+    name: pollo mongoliano
+    image: static/img/rice.png
+    description: El pollo mongoliano mas ricoque hayan probado
+    stock: 10
+    price: 1990
+    tags: []
+- model: showcase.dish
+  pk: 3
+  fields:
+    user: 7
+    name: empanada de pino
+    image: static/img/rice.png
+    description: Empanada cacera con pino de carne mechada
+    stock: 15
+    price: 1000
+    tags: []
+- model: showcase.dish
+  pk: 4
+  fields:
+    user: 7
+    name: empanada de queso
+    image: static/img/rice.png
+    description: Empanada hecha con queso de campo
+    stock: 5
+    price: 1000
+    tags: []
+- model: showcase.dish
+  pk: 5
+  fields:
+    user: 4
+    name: arroz con pollo
+    image: static/img/rice.png
+    description: El mejor lunchbox que has omido
+    stock: 8
+    price: 2500
+    tags: []
+- model: showcase.dish
+  pk: 6
+  fields:
+    user: 5
+    name: sushi tempura
+    image: static/img/rice.png
+    description: Sushi relleno de pollo, queso crema y ciboulette
+    stock: 12
+    price: 1200
+    tags: []
+- model: showcase.dish
+  pk: 7
+  fields:
+    user: 6
+    name: lasagna
+    image: static/img/rice.png
+    description: Lasagna cacera con pino de lomo liso y pasas carozzi
+    stock: 3
+    price: 2300
+    tags: []
+- model: account.established
+  pk: 1
+  fields: {user: 6, image: '', cash: true, credit: false, debit: false, social: false,
+    start: '10:20:00', end: '20:34:00'}
+- model: account.established
+  pk: 2
+  fields: {user: 7, image: '', cash: true, credit: false, debit: false, social: false,
+    start: '10:20:00', end: '20:34:00'}
+- model: account.peddler
+  pk: 1
+  fields: {user: 3, image: '', cash: true, credit: false, debit: false, social: false}
+- model: account.peddler
+  pk: 2
+  fields: {user: 4, image: '', cash: true, credit: false, debit: false, social: false}
+- model: account.peddler
+  pk: 3
+  fields: {user: 5, image: '', cash: true, credit: false, debit: false, social: false}
+- model: account.client
+  pk: 1
+  fields: {user: 1, image: ''}
+- model: account.client
+  pk: 2
+  fields: {user: 2, image: ''}
+- model: account.client
+  pk: 3
+  fields: {user: 8, image: ''}
