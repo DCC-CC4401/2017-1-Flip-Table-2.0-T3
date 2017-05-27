@@ -1,10 +1,12 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.views.generic import View
-from .models import User
+from django.contrib.auth.models import User
+
+from account.models import Client, Peddler, Established
 
 
 # Create your views here.
@@ -19,12 +21,24 @@ def item_new(request):
     return render(request, 'item_new.html', context)
 
 
-class ShowcaseView(generic.ListView):
-    template_name = 'showcase.html'
-    context_object_name = 'dishes'  # <!-- default name: object_list -->
+# class ShowcaseView(generic.ListView):
+#     template_name = 'showcase.html'
+#     context_object_name = 'dishes'  # <!-- default name: object_list -->
+#
+#     def get_queryset(self):
+#         user = User.objects.get(id=self.kwargs['seller_id'])
+#         return user.dish_set.all()
 
 
-    def get_queryset(self):
-        id = self.kwargs['seller_id']
-        user = User.objects.get(id=11)
-        return user.dish_set
+def showcase(request, seller_id):
+    user = User.objects.get(id=seller_id)
+    seller = Peddler.objects.all().filter(user=user).first()
+    is_peddler = True
+    if seller is None:
+        seller = get_object_or_404(Established, user=user)
+        is_peddler = False
+
+    dishes = user.dish_set.all()
+    context = {'dishes': dishes, 'is_peddler': is_peddler, 'user': user, 'selller': seller}
+
+    return render(request, 'showcase.html', context)
