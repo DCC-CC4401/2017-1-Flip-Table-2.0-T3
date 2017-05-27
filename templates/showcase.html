@@ -111,7 +111,13 @@
                                             <ul>
                                                 <li>Precio: <a class="green-text light-green-text">{{ dish.price }}</a>
                                                 </li>
-                                                <li>Categoria: Almuerzos</li>
+                                                <li>Categoria:
+                                                    {% with dish.tags.all as tags %}
+                                                    {% for tag in tags %}
+                                                        {{ tag.name }},
+                                                    {% endfor %}
+                                                {% endwith %}
+                                                </li>
                                                 <li>Stock: {{ dish.stock }}</li>
                                                 <li>Descripción: {{ dish.description }}
                                                     <p class="right-align"><a
