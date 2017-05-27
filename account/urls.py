@@ -41,7 +41,10 @@ urlpatterns = [
     url(r'^register/established/$', views.register_established, name='register_established'),
 
     # /account/login
-    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
+
+# /account/login
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout')
 
     # /account/<user_nick>/
     # url(r'^(?P<user_nick>[0-9]+)/$', views.edit, name='edit'),

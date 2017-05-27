@@ -44,6 +44,8 @@
         <li><a href="{% url 'map:index' %}"><i class="material-icons">home</i>Inicio</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'account:login' %}"><i class="material-icons">account_circle</i>Iniciar Sesión</a></li>
+        {% else %}
+        <li><a href="{% url 'account:logout' %}"><i class="material-icons">account_circle</i>Cerrar Sesión</a></li>
         {% endif %}
 
         <!--

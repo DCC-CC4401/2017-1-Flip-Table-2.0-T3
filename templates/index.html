@@ -42,13 +42,11 @@
         <img src="../static/img/map2.png" width="100%" height="100%" alt="map" usemap="#map" id="img_ID">
 
         <map name="map" id="map_ID">
-            {% if available_database %}
             <area shape="circle" coords="850,205,10" alt="vendedor1" title="vendedor1" href="{% url 'showcase:showcase' lunchbox.id %}">
             <area shape="circle" coords="830,320,10" alt="vendedor2" title="vendedor2" href="{% url 'showcase:showcase' sushi.id %}">
             <area shape="circle" coords="830,410,10" alt="vendedor3" title="vendedor3" href="{% url 'showcase:showcase' pepe.id %}">
             <area shape="circle" coords="924,654,10" alt="vendedor4" title="vendedor4" href="{% url 'showcase:showcase' empanada.id %}">
             <area shape="circle" coords="826,608,15" alt="vendedorFavorito" title="vendedorFavorito" href="{% url 'showcase:showcase' chino.id %}">
-            {% endif %}
         </map>
     </div>
 
