@@ -13,13 +13,13 @@ def load_client(apps, schema_editor):
 
     user1 = User(username='alumno1', first_name='Tibo', last_name='Swy', email='tsy@bla.com', password='12345678abcd')
     user1.save()
-    client1 = Client(user=user1)
+    client1 = Client(user=user1, image='img/AvatarEstudiante3.png')
     client1.save()
 
     user2 = User(username='alumno2', first_name='pepe', last_name='pepe2', email='pepe@pepe.com',
                  password='12345678abcd')
     user2.save()
-    client2 = Client(user=user2)
+    client2 = Client(user=user2, image='img/AvatarEstudiante4.png')
     client2.save()
 
 
@@ -29,19 +29,19 @@ def load_paddler(apps, schema_editor):
     user3 = User(username='chino', first_name='diego', last_name='diego2', email='diego@diego.com',
                  password='12345678abcd')
     user3.save()
-    peddler1 = Peddler(user=user3)
+    peddler1 = Peddler(user=user3, image='img/AvatarVendedor1.png')
     peddler1.save()
 
     user4 = User(username='lunchbox', first_name='juan', last_name='juan2', email='juan@juan.com',
                  password='12345678abcd')
     user4.save()
-    peddler2 = Peddler(user=user4)
+    peddler2 = Peddler(user=user4, image='img/AvatarVendedor2.png')
     peddler2.save()
 
     user5 = User(username='sushi', first_name='lucas', last_name='lucas2', email='lucas@lucas.com',
                  password='12345678abcd')
     user5.save()
-    peddler3 = Peddler(user=user5)
+    peddler3 = Peddler(user=user5, image='img/AvatarVendedor3.png')
     peddler3.save()
 
 def load_estabished(apps, schema_editor):
@@ -50,28 +50,33 @@ def load_estabished(apps, schema_editor):
     user6 = User(username='pepe', first_name='pedro', last_name='pedro2', email='pedro@pedro.com',
                  password='12345678abcd')
     user6.save()
-    established1 = Established(user=user6, start='10:20', end='20:34')
+    established1 = Established(user=user6, image='img/AvatarVendedor4.png', start='10:20', end='20:34')
     established1.save()
 
     user7 = User(username='empanada', first_name='carlos', last_name='carlos2', email='carlos@carlos.com',
                  password='12345678abcd')
     user7.save()
-    established2 = Established(user=user7, start='10:20', end='20:34')
+    established2 = Established(user=user7, image='img/AvatarVendedor5.png', start='10:20', end='20:34')
     established2.save()
 
 def delete_client(apps, schema_editor):
-    User.objects.all().delete()
+    User.objects.get(username='alumno1').delete()
+    User.objects.get(username='alumno2').delete()
 
 def delete_peddler(apps, schema_editor):
-    User.objects.all().delete()
+    User.objects.get(username='lunchbox').delete()
+    User.objects.get(username='chino').delete()
+    User.objects.get(username='sushi').delete()
 
 def delete_established(apps, schema_editor):
-    User.objects.all().delete()
+    User.objects.get(username='pepe').delete()
+    User.objects.get(username='empanada').delete()
 
 class Migration(migrations.Migration):
 
     dependencies = [
         ('account', '0002_auto_20170524_1438'),
+        ('auth', '0008_alter_user_username_max_length')
     ]
 
     operations = [
