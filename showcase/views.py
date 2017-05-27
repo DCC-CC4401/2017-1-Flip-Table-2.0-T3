@@ -7,7 +7,6 @@ from django.views.generic import View
 from django.contrib.auth.models import User
 
 from account.models import Client, Peddler, Established
-
 # Create your views here.
 
 def index(request):
@@ -39,4 +38,5 @@ def showcase(request, seller_id):
     img = seller.image
     dishes = user.dish_set.all()
     context = {'dishes': dishes, 'user': user,'isPeddler': isPeddler,'seller': seller,'image': img}
+
     return render(request, 'showcase.html', context)
