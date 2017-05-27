@@ -29,14 +29,14 @@ def item_new(request):
 
 
 def showcase(request, seller_id):
-    user = User.objects.get(id=seller_id)
+    seller_user = User.objects.get(id=seller_id)
     try:
-        seller = Peddler.objects.get(user=user)
+        seller = Peddler.objects.get(user=seller_user)
     except:
-        seller = get_object_or_404(Established,user=user)
+        seller = get_object_or_404(Established,user=seller_user)
     isPeddler = seller.__class__ == Peddler
     img = seller.image
-    dishes = user.dish_set.all()
-    context = {'dishes': dishes, 'user': user,'isPeddler': isPeddler,'seller': seller,'image': img}
+    dishes = seller_user.dish_set.all()
+    context = {'dishes': dishes, 'seller_user': seller_user,'isPeddler': isPeddler,'seller': seller,'image': img}
 
     return render(request, 'showcase.html', context)

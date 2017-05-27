@@ -1,16 +1,23 @@
 from django.shortcuts import render, redirect
-from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm, AuthenticationForm
-from django.shortcuts import HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from django.contrib.auth import views as auth_views
-from django.contrib.auth import authenticate, login as django_login
+from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm
 
 
 # Create your views here.
 
 def edit(request):
-    context = {}
-    return render(request, 'account_edit.html', context)
+    args = {}
+
+    if request.method == 'POST':
+        form = UpdateProfile(request.POST)
+        form.actual_user = request.user
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('update_profile_success'))
+    else:
+        form = UpdateProfile()
+
+    args['form'] = form
+    return render(request, 'registration/update_profile.html', args)
 
 
 def new_item(request):

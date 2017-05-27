@@ -55,6 +55,7 @@
                 </form>
 
                 <div class='col s12 m12'>
+                    {% if user.is_peddler or user.is_established %}
                     Seleccione sus formas de pago:
                     <form action="#">
                         <p>
@@ -74,6 +75,7 @@
                             <label for="filled-in-box4">Tarjeta Junaeb</label>
                         </p>
                     </form>
+                    {% endif %}
 
                     <form action="#">
                         <p>Cambiar avatar:</p>
