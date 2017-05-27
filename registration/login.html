@@ -15,15 +15,15 @@
                     {% csrf_token %}
                     <div class='row'>
                         <div class='input-field col s12 m12'>
-                            <input class='validate' type='email' name='email' id='email'/>
-                            <label style="text-align: center;" for='{{ form.email.id_for_label }}'>Ingresa tu correo</label>
+                            <label style="text-align: center;" for='{{ form.username.id_for_label }}'>Ingresa tu nombre de usuario</label>
+                            {{ form.username }}
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input class='validate' type='password' name='password' id='password'/>
-                            <label style="text-align: center;" for='password'>Ingresa tu contraseña</label>
+                            <label style="text-align: center;" for='{{ form.password.id_for_label }}'>Ingresa tu contraseña</label>
+                            {{ form.password }}
                         </div>
                         <label style='float: right;'>
                             <a class='red-text text-accent-2' href='#'><b>¿Olvidaste tu contraseña?</b></a>

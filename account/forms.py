@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from .models import Client, Peddler, Established
 from django.contrib.admin import widgets
@@ -86,3 +86,12 @@ class EstablishedCreateForm(UserCreationForm):
                               start=self.cleaned_data['start'], end=self.cleaned_data['end'], )
         profile.save()
         return user, profile
+
+
+class LoginCreateForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(LoginCreateForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')

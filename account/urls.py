@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from . import views
+from django.contrib.auth import views as auth_views
 
 app_name = 'account'
 
@@ -40,7 +41,7 @@ urlpatterns = [
     url(r'^register/established/$', views.register_established, name='register_established'),
 
     # /account/login
-    url(r'^login/$', views.login, name='login'),
+    url(r'^login/$', auth_views.login, name='login'),
 
     # /account/<user_nick>/
     # url(r'^(?P<user_nick>[0-9]+)/$', views.edit, name='edit'),

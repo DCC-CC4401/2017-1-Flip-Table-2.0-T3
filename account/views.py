@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm
+from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm, AuthenticationForm
+from django.shortcuts import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.contrib.auth import views as auth_views
 from django.contrib.auth import authenticate, login as django_login
 
 
@@ -8,16 +11,6 @@ from django.contrib.auth import authenticate, login as django_login
 def edit(request):
     context = {}
     return render(request, 'account_edit.html', context)
-
-
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        django_login(request, user)
-        return redirect('map:index')
-    return render(request, 'register_client.html', {'form': form})
 
 
 def new_item(request):
