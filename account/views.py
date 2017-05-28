@@ -6,10 +6,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
 
-
+@login_required(login_url='/account/login')
 def delete_user(request):
     return render(request, 'delete.html')
 
+@login_required(login_url='/account/login')
 def confirm_deleted(request):
     request.user.delete()
     return render(request, 'deleted_confirmation.html')
@@ -91,7 +92,7 @@ def register_client(request):
             user = authenticate(username=user.username, password=user.password)
             if user is not None:
                 login(request, user)
-                return redirect('map:index')
+                return redirect('account:login')
     else:
         form = ClientCreateForm()
     return render(request, 'register_client.html', {'form': form})
@@ -106,7 +107,7 @@ def register_peddler(request):
             user = authenticate(username=user.username, password=user.password)
             if user is not None:
                 login(request, user)
-                return redirect('map:index')
+                return redirect('account:login')
     else:
         form = PeddlerCreateForm()
     return render(request, 'register_peddler.html', {'form': form})
@@ -119,8 +120,9 @@ def register_established(request):
             user, user_profile = form.save()
             user.save()
             user = authenticate(username=user.username, password=user.password)
-            login(request, user)
-            return redirect('map:index')
+            if user is not None:
+                login(request, user)
+                return redirect('account:login')
     else:
         form = EstablishedCreateForm()
     return render(request, 'register_established.html', {'form': form})
