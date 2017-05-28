@@ -10,5 +10,5 @@ def index(request):
     lunchbox = User.objects.get(username='lunchbox')
     sushi = User.objects.get(username='sushi')
     pepe = User.objects.get(username='pepe')
-    context = {'chino': chino, 'empanada': empanada, 'lunchbox': lunchbox, 'sushi': sushi, 'pepe':pepe}
+    context = {'chino': chino, 'empanada': empanada, 'lunchbox': lunchbox, 'sushi': sushi, 'pepe': pepe, }
     return render(request, 'index.html', context)
