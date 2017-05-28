@@ -1,4 +1,22 @@
 {% extends 'base.html' %}
+
+{%  block active %}
+    <div>
+    {% if isPeddler and isPeddlerInHisProfile %}
+        <li><a class="subheader">Activo</a></li>
+            <li>
+            <a href="{% url 'showcase:checkin' seller.id %}">
+                <div class="switch center" style="margin-left: 10px;">
+                    <label>
+                        No<input type="checkbox"><span class="lever"></span>Si
+                    </label>
+                </div>
+            </a>
+            </li>
+    {% endif %}
+    </div>
+{% endblock %}
+
 {% block content %}
     {% load staticfiles %}
     <script>
@@ -44,7 +62,22 @@
                         </div>
                         <div class="col s6 m3 l3 center-align">
                             <h4 class="card-title flow-text text-darken-4">Estado</h4>
-                            <p class="medium-small flow-text light-green-text">Disponible</p>
+                            {% if not isPeddler %}
+                                <!--If Established isAvailable Disponible else No Disponible-->
+                                {% if isAvailable %}
+                                    <p class="medium-small flow-text light-green-text">Disponible</p>
+                                {% else %}
+                                    <p class="medium-small flow-text grey-text center">No Disponible</p>
+                                {% endif %}
+                            {% else %}
+                                <!--If peddler.available Disponible else No Disponible-->
+                                {% if seller_profile.available %}
+                                    <p class="medium-small flow-text light-green-text">Disponible</p>
+                                {% else %}
+                                    <p class="medium-small flow-text grey-text center">No Disponible</p>
+                                {% endif %}
+
+                            {% endif %}
                         </div>
                         <div class="col s6 m3 l3 center-align">
                             <h4 class=" grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de
@@ -68,8 +101,14 @@
                                 <h4 class="card-title grey-text flow-text text-darken-4">Favorito</h4>
                                 {% if isClient %}
                                     <a href="{% url 'showcase:favorite_seller' seller.id %}">
-                                        <i id="favorite" class=" material-icons amber-text"
-                                        >{% if isFavorite %}star{% else %}star_border{% endif %}</i></a>
+                                        <i id="favorite" class=" material-icons amber-text">
+                                            {% if isFavorite %}
+                                                star
+                                            {% else %}
+                                                star_border
+                                            {% endif %}
+                                        </i>
+                                    </a>
                                     <span id="favorite_count" class=" grey-text flow-text text-darken-4"
                                           style="font-size:24px; line-height:35px;">{{ favorite }}</span>
                                 {% else %}
