@@ -38,7 +38,7 @@
                 {% if not user.is_authenticated %}
                     <span class="white-text name">Invitado</span>
                 {% else %}
-                    <a href="{% url 'account:edit' %}"><i class="material-icons right grey-text text-lighten-2"
+                    <a href="{% url 'account:edit_user' %}"><i class="material-icons right grey-text text-lighten-2"
                                                           style="position: absolute; bottom: 0.2em; right: 0.2em; padding: 0 0 !important;">settings</i></a>
                     <span class="white-text name">Hola {{ user.first_name }}!</span>
                 {% endif %}

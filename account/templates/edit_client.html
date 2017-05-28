@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'edit_base.html' %}
 {% block body %}
     {% load staticfiles %}
     {{ form.non_field_errors }}
@@ -8,14 +8,12 @@
             <label for="{{ form.first_name.id_for_label }}">Nombre</label>
             {{ form.first_name }}
         </div>
-
         <div class="input-field col s6">
             {{ form.last_name.errors }}
             <label for="{{ form.last_name.id_for_label }}">Apellido</label>
             {{ form.last_name }}
         </div>
     </div>
-
 
     <div class="row">
         <div class='input-field col s12 m12'>
@@ -42,7 +40,7 @@
     <div class='row center'>
         <button type='submit' name='btn_login'
                 class='btn btn-large waves-effect teal'>
-            Registrarse
+            Guardar
         </button>
     </div>
 

@@ -1,53 +1,65 @@
-from django.shortcuts import render, redirect
-from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm, ClientUpdateForm
-from .models import Peddler, Established
+from django.shortcuts import render, redirect, render_to_response
+from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm, ClientUpdateForm, EstablishedUpdateForm, \
+    PeddlerUpdateForm
+from .models import Peddler, Established, Client
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from django.template.context import RequestContext
 
 
-# Create your views here.
-
-def edit(request):
-    if request.user.__class__ == Peddler:
-        return update_peddler(request)
-    elif request.user.__class__ == Established:
-        return update_established(request)
+def edit_user(request):
+    if request.user.client:
+        return redirect('account:edit_client')
+    elif request.user.peddler:
+        return redirect('account:edit_peddler')
     else:
-        return update_client(request)
+        return redirect('account:edit_established')
 
-def update_client(request):
+
+def edit_client(request):
+    try:
+        profile = request.user
+    except Client.DoesNotExist:
+        profile = Client(user=request.user)
     if request.method == 'POST':
-        form = ClientUpdateForm(request.POST)
+        form = ClientUpdateForm(data=request.POST, instance=profile)
         if form.is_valid():
-            user, user_profile = form.save()
-            user.save()
-            return redirect('index.html')
-        else:
-            print("NOOOOOOOOOOOOOOOOOOOOO")
-            return redirect('caca.html')
+            form.save()
+            return redirect('map:index')
     else:
-        form = ClientCreateForm()
-    return render(request, 'account_edit.html', {'form': form})
+        form = ClientUpdateForm(instance=request.user)
+    return render(request, 'edit_client.html', {'form': form})
 
-def update_peddler(request):
-    if request.method == 'POST':
-        form = ClientUpdateForm(request.POST)
-        if form.is_valid():
-            user, user_profile = form.save()
-            user.save()
-            return redirect('account_edit.html')
-    else:
-        form = ClientCreateForm()
-    return render(request, 'account_edit.html', {'form': form})
 
-def update_established(request):
+def edit_peddler(request):
+    try:
+        profile = request.user
+    except Peddler.DoesNotExist:
+        profile = Peddler(user=request.user)
     if request.method == 'POST':
-        form = ClientUpdateForm(request.POST)
+        form = PeddlerUpdateForm(data=request.POST, instance=profile)
         if form.is_valid():
-            user, user_profile = form.save()
-            user.save()
-            return redirect('account_edit.html')
+            form.save()
+            return redirect('map:index')
     else:
-        form = ClientCreateForm()
-    return render(request, 'account_edit.html', {'form': form})
+        form = PeddlerUpdateForm(instance=request.user)
+    return render(request, 'edit_peddler.html', {'form': form})
+
+
+def edit_established(request):
+    try:
+        profile = request.user
+    except Established.DoesNotExist:
+        profile = Established(user=request.user)
+    if request.method == 'POST':
+        form = EstablishedUpdateForm(data=request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('map:index')
+    else:
+        form = EstablishedUpdateForm(instance=request.user)
+    return render(request, 'edit_established.html', {'form': form})
 
 
 def new_item(request):
@@ -65,7 +77,10 @@ def register_client(request):
         if form.is_valid():
             user, user_profile = form.save()
             user.save()
-            return redirect('map:index')
+            user = authenticate(username=user.username, password=user.password)
+            if user is not None:
+                login(request, user)
+                return redirect('map:index')
     else:
         form = ClientCreateForm()
     return render(request, 'register_client.html', {'form': form})
@@ -77,7 +92,10 @@ def register_peddler(request):
         if form.is_valid():
             user, user_profile = form.save()
             user.save()
-            return redirect('map:index')
+            user = authenticate(username=user.username, password=user.password)
+            if user is not None:
+                login(request, user)
+                return redirect('map:index')
     else:
         form = PeddlerCreateForm()
     return render(request, 'register_peddler.html', {'form': form})
@@ -89,6 +107,8 @@ def register_established(request):
         if form.is_valid():
             user, user_profile = form.save()
             user.save()
+            user = authenticate(username=user.username, password=user.password)
+            login(request, user)
             return redirect('map:index')
     else:
         form = EstablishedCreateForm()

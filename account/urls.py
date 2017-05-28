@@ -22,8 +22,13 @@ app_name = 'account'
 
 urlpatterns = [
 
-    # /account/
-    url(r'^$', views.edit, name='edit'),
+    url(r'^edit/$', views.edit_user, name='edit_user'),
+
+    url(r'^edit/client$', views.edit_client, name='edit_client'),
+
+    url(r'^edit/peddler$', views.edit_peddler, name='edit_peddler'),
+
+    url(r'^edit/established$', views.edit_established, name='edit_established'),
 
     # # /account/login
     # url(r'^login/$', views.login, name='login'),
@@ -41,11 +46,9 @@ urlpatterns = [
     url(r'^register/established/$', views.register_established, name='register_established'),
 
     # /account/login
-    url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
+    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
 
-# /account/login
+    # /account/login
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout')
 
-    # /account/<user_nick>/
-    # url(r'^(?P<user_nick>[0-9]+)/$', views.edit, name='edit'),
 ]
