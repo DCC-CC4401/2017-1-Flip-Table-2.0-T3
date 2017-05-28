@@ -5,15 +5,23 @@ from .models import Peddler, Established, Client
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
+from django.contrib import messages
+
 
 @login_required(login_url='/account/login')
 def delete_user(request):
     return render(request, 'delete.html')
 
+
 @login_required(login_url='/account/login')
 def confirm_deleted(request):
     request.user.delete()
-    return render(request, 'deleted_confirmation.html')
+    messages.add_message(request, messages.SUCCESS, "Usuario eliminado exitosamente")
+    return render(request, 'deleted_confirmation.html', {'messages':messages})
+
+
+def confirm_registration(request):
+    return render(request, 'confirm_registration.html')
 
 
 @login_required(login_url='/account/login')
@@ -22,8 +30,10 @@ def edit_user(request):
         return redirect('account:edit_peddler')
     elif Client.objects.filter(user=request.user).exists():
         return redirect('account:edit_client')
-    else:
+    elif Established.objects.filter(user=request.user).exists():
         return redirect('account:edit_established')
+    else:
+        return redirect('account:caca')
 
 
 @login_required(login_url='/account/login')
@@ -36,6 +46,7 @@ def edit_client(request):
         form = ClientUpdateForm(data=request.POST, instance=profile)
         if form.is_valid():
             form.save()
+            messages.add_message(request, 25, "Has editado con éxito tu información")
             return redirect('map:index')
     else:
         form = ClientUpdateForm(instance=request.user)
@@ -52,6 +63,7 @@ def edit_peddler(request):
         form = PeddlerUpdateForm(data=request.POST, instance=profile)
         if form.is_valid():
             form.save()
+            messages.add_message(request, 25, "Has editado con éxito tu información")
             return redirect('map:index')
     else:
         form = PeddlerUpdateForm(instance=request.user)
@@ -68,6 +80,7 @@ def edit_established(request):
         form = EstablishedUpdateForm(data=request.POST, instance=profile)
         if form.is_valid():
             form.save()
+            messages.add_message(request, 25, "Has editado con éxito tu información")
             return redirect('map:index')
     else:
         form = EstablishedUpdateForm(instance=request.user)
@@ -89,10 +102,8 @@ def register_client(request):
         if form.is_valid():
             user, user_profile = form.save()
             user.save()
-            user = authenticate(username=user.username, password=user.password)
-            if user is not None:
-                login(request, user)
-                return redirect('account:login')
+            messages.add_message(request, 25, "Te has registrado con éxito")
+            return redirect('account:confirm_registration')
     else:
         form = ClientCreateForm()
     return render(request, 'register_client.html', {'form': form})
@@ -104,10 +115,8 @@ def register_peddler(request):
         if form.is_valid():
             user, user_profile = form.save()
             user.save()
-            user = authenticate(username=user.username, password=user.password)
-            if user is not None:
-                login(request, user)
-                return redirect('account:login')
+            messages.add_message(request, 25, "Te has registrado con éxito")
+            return redirect('account:confirm_registration')
     else:
         form = PeddlerCreateForm()
     return render(request, 'register_peddler.html', {'form': form})
@@ -119,10 +128,8 @@ def register_established(request):
         if form.is_valid():
             user, user_profile = form.save()
             user.save()
-            user = authenticate(username=user.username, password=user.password)
-            if user is not None:
-                login(request, user)
-                return redirect('account:login')
+            messages.add_message(request, 25, "Te has registrado con éxito")
+            return redirect('account:confirm_registration')
     else:
         form = EstablishedCreateForm()
     return render(request, 'register_established.html', {'form': form})

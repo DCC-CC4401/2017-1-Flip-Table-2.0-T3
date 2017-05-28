@@ -39,6 +39,9 @@ urlpatterns = [
     # /account/register
     url(r'^register/$', views.register, name='register'),
 
+    # /account/confirmation
+    url(r'^confirmation/$', views.confirm_registration, name='confirm_registration'),
+
     # /account/register/client
     url(r'^register/client/$', views.register_client, name='register_client'),
 
@@ -51,7 +54,7 @@ urlpatterns = [
     # /account/login
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
 
-    # /account/login
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout')
+    # /account/logout
+    url(r'^logout/$', auth_views.logout, {'next_page': '/account/login'}, name='logout')
 
 ]
