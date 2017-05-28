@@ -23,8 +23,9 @@
                             &ensp;Nombre del producto:
                             <div class="input-field inline ">
                                 <input placeholder="Pizza" class='validate' type='text' name='item' id='item'/>
+                                {{ form.dish_name.errors }}
+                                <label style="text-align: center" for={{ form.dish_name.id_for_label }}></label>
                                 {{ form.dish_name }}
-                                <label style="text-align: center" for='item'></label>
                             </div>
                         </div>
                     </div>
@@ -34,7 +35,8 @@
                             &ensp;Precio del producto:
                             <div class="input-field inline">
                                 <input placeholder="1300" class='validate' type='text' name='precio' id='precio'/>
-                                <label style="text-align: center" for='precio'></label>
+                                {{ form.value.errors }}
+                                <label style="text-align: center" for={{ form.value.id_for_label }}></label>
                                 {{ form.value }}
                             </div>
                         </div>
@@ -44,7 +46,8 @@
                             &ensp;Stock del producto:
                             <div class="input-field inline">
                                 <input placeholder="42" class='validate' type='text' name='stock' id='stock'/>
-                                <label style="text-align: center" for='stock'></label>
+                                {{ form.stock.errors }}
+                                <label style="text-align: center" for={{ form.stock.id_for_label }}></label>
                                 {{ form.stock }}
                             </div>
                         </div>
@@ -55,7 +58,8 @@
                                 <div class="input-field col s12 m12">
                                     <i class="material-icons prefix">&emsp;mode_edit</i>
                                     <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                    <label for="icon_prefix2">&emsp;Descripción</label>
+                                    {{ form.descripion.errors }}
+                                    <label for={{ form.description.id_for_label }}>&emsp;Descripción</label>
                                     {{ form.description }}
                                 </div>
                             </div>
@@ -156,7 +160,7 @@
                     </div>
                     <div class='row'>
                         <a class='col l5 offset-l4 btn btn-large waves-effect button teal'
-                           href="{% url 'showcase:index' %}">&emsp; &emsp;Agregar<i
+                           href="{{ request.GET.next }}">&emsp; &emsp;Agregar<i
                                 class="material-icons right">send</i></a>
                     </div>
                 </div>

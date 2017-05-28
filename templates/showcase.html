@@ -276,9 +276,8 @@
                     </div>
 
                     <div class='row center'>
-                        <!-- al volver de agregar un producto, vuelve a showcase y no al vendedor -->
                         <a class=' btn btn-large waves-effect button teal'
-                           href="{% url 'showcase:item_new' %}">Agregar Item</a>
+                           href="{% url 'showcase:item_new' %}?next={{ request.path|urlencode }}">Agregar Item</a>
                     </div>
                 </div>
             </div>
