@@ -44,7 +44,6 @@ def showcase(request, seller_id):
     isClient = False
 
     current_user = request.user
-    print(current_user)
     if current_user.is_authenticated() and Client.objects.filter(user=current_user).exists():
         isClient = True
 
