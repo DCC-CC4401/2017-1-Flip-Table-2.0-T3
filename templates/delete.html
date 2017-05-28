@@ -4,9 +4,9 @@
     <main>
         <div class="section"></div>
 
-        <h5 style="text-align: center;" class="teal-text">Eliminar cuenta</h5>
-        <div class="section">
-            <h6 style="align-content: center" class="red-text">Atención, esto eliminará toda tu información. </h6>
+        <h3 style="text-align: center;" class="teal-text">Eliminar cuenta</h3>
+        <div class="section" align="center">
+            <h4 style="align-content: center" class="red-text">Atención, esto eliminará toda tu información. </h4>
             <h6 style="align-content: center">Si estás seguro de lo que estás haciendo, ingresa tu contraseña a
                 continuación</h6>
         </div>
@@ -19,9 +19,8 @@
                     {% csrf_token %}
                     <div class='row'>
                         <div class='input-field col s12 m12'>
-                            <label style="text-align: center;" for='{{ password.id_for_label }}'>Ingresa tu contraseña para
+                            <label style="text-align: center;" name="passw">Ingresa tu contraseña para
                                 confirmar</label>
-                            {{ password }}
                         </div>
                     </div>
 

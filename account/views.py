@@ -7,15 +7,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
 
 def delete_user(request):
+    passw = request.POST.get('passw')
     if request.method == 'POST':
         username = get_user(request)
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=passw)
         if user is not None:
             u = request.user
             u.delete()
             return redirect('map:index')
-    return render(request, 'delete.html')
+    return render(request, 'delete.html', {'passw':passw})
 
 
 @login_required(login_url='/account/login')
