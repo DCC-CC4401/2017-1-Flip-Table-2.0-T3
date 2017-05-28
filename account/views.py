@@ -1,20 +1,13 @@
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect
 from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm, ClientUpdateForm, EstablishedUpdateForm, \
     PeddlerUpdateForm
 from .models import Peddler, Established, Client
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm
-from django.template.context import RequestContext
 
 
 def edit_user(request):
-    if request.user.client:
-        return redirect('account:edit_client')
-    elif request.user.peddler:
-        return redirect('account:edit_peddler')
-    else:
-        return redirect('account:edit_established')
+    print(request.user.get_profile())
+    return redirect('account:edit_client')
 
 
 def edit_client(request):

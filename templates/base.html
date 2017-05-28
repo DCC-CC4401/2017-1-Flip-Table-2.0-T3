@@ -34,7 +34,7 @@
                 <div class="background">
                     <img src="{% static 'img/background4.png' %}">
                 </div>
-                <img class="circle" src="{% static 'img/AvatarPenguin.png' %}">
+                <img class="circle" src="{{ user.image }}">
                 {% if not user.is_authenticated %}
                     <span class="white-text name">Invitado</span>
                 {% else %}
