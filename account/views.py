@@ -6,8 +6,12 @@ from django.contrib.auth import authenticate, login
 
 
 def edit_user(request):
-    print(request.user.get_profile())
-    return redirect('account:edit_client')
+    if Peddler.objects.filter(user=request.user).exists():
+        return redirect('account:edit_peddler')
+    elif Client.objects.filter(user=request.user).exists():
+        return redirect('account:edit_client')
+    else:
+        return redirect('account:edit_established')
 
 
 def edit_client(request):
