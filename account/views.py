@@ -6,16 +6,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
 
+
 def delete_user(request):
-    passw = request.POST.get('passw')
-    if request.method == 'POST':
-        username = get_user(request)
-        user = authenticate(request, username=username, password=passw)
-        if user is not None:
-            u = request.user
-            u.delete()
-            return redirect('map:index')
-    return render(request, 'delete.html', {'passw':passw})
+    return render(request, 'delete.html')
+
+def confirm_deleted(request):
+    request.user.delete()
+    return render(request, 'deleted_confirmation.html')
 
 
 @login_required(login_url='/account/login')
@@ -26,6 +23,7 @@ def edit_user(request):
         return redirect('account:edit_client')
     else:
         return redirect('account:edit_established')
+
 
 @login_required(login_url='/account/login')
 def edit_client(request):
@@ -42,6 +40,7 @@ def edit_client(request):
         form = ClientUpdateForm(instance=request.user)
     return render(request, 'edit_client.html', {'form': form})
 
+
 @login_required(login_url='/account/login')
 def edit_peddler(request):
     try:
@@ -56,6 +55,7 @@ def edit_peddler(request):
     else:
         form = PeddlerUpdateForm(instance=request.user)
     return render(request, 'edit_peddler.html', {'form': form})
+
 
 @login_required(login_url='/account/login')
 def edit_established(request):

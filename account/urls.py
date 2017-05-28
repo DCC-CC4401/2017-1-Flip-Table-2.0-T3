@@ -23,6 +23,8 @@ app_name = 'account'
 urlpatterns = [
     url(r'^delete/$', views.delete_user, name='delete'),
 
+    url(r'^delete/confirmation/$', views.confirm_deleted, name='confirm_deleted'),
+
     url(r'^edit/$', views.edit_user, name='edit_user'),
 
     url(r'^edit/client$', views.edit_client, name='edit_client'),
