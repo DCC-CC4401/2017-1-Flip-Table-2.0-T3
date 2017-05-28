@@ -82,19 +82,16 @@
     </div>
 
     <div class='row'>
-        <p>Cambiar avatar:</p>
-        <input class="with-gap" name="group1" type="radio" id="test1"/>
-        <label for="test1"><img class="circle" style="max-width: 50px;"
-                                src="{% static 'img/AvatarVendedor1.png' %}"></label>
-        <input class="with-gap" name="group1" type="radio" id="test2"/>
-        <label for="test2"><img class="circle" style="max-width: 50px;"
-                                src="{% static 'img/AvatarVendedor2.png' %}"></label>
-        <input class="with-gap" name="group1" type="radio" id="test3"/>
-        <label for="test3"><img class="circle" style="max-width: 50px;"
-                                src="{% static 'img/AvatarVendedor3.png' %}"></label>
-        <input class="with-gap" name="group1" type="radio" id="test4"/>
-        <label for="test4"><img class="circle" style="max-width: 50px;"
-                                src="{% static 'img/AvatarVendedor4.png' %}"></label>
+        <p>Selecciona avatar:</p>
+        {% for choice in form.choices %}
+            {% with i=forloop.counter|stringformat:"s" %}
+                {% with 'img/AvatarVendedor'|add:i|add:'.png' as image_url %}
+                    {{ choice.tag }}
+                    <label for="{{ choice.id_for_label }}"><img class="circle" style="max-width: 50px;"
+                                                                src="{% static image_url %}"></label>
+                {% endwith %}
+            {% endwith %}
+        {% endfor %}
     </div>
 
     <div class='row center'>

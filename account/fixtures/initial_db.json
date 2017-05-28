@@ -144,6 +144,55 @@
     }
   },
   {
+    "model": "showcase.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Pack"
+    }
+  },
+  {
+    "model": "showcase.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Vegetariano"
+    }
+  },
+  {
+    "model": "showcase.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Vegano"
+    }
+  },
+  {
+    "model": "showcase.tag",
+    "pk": 4,
+    "fields": {
+      "name": "Pastas"
+    }
+  },
+  {
+    "model": "showcase.tag",
+    "pk": 5,
+    "fields": {
+      "name": "Handroll"
+    }
+  },
+  {
+    "model": "showcase.tag",
+    "pk": 6,
+    "fields": {
+      "name": "Casero"
+    }
+  },
+  {
+    "model": "showcase.tag",
+    "pk": 7,
+    "fields": {
+      "name": "Almuerzo"
+    }
+  },
+  {
     "model": "showcase.dish",
     "pk": 1,
     "fields": {
@@ -153,7 +202,7 @@
       "description": "La carne mongoliana m\u00e1s rica que hayan probado",
       "stock": 20,
       "price": 2990,
-      "tags": []
+      "tags": [1,6,7]
     }
   },
   {
@@ -166,7 +215,7 @@
       "description": "El pollo mongoliano mas ricoque hayan probado",
       "stock": 10,
       "price": 1990,
-      "tags": []
+      "tags": [1,6,7]
     }
   },
   {
@@ -179,7 +228,7 @@
       "description": "Empanada cacera con pino de carne mechada",
       "stock": 15,
       "price": 1000,
-      "tags": []
+      "tags": [6]
     }
   },
   {
@@ -192,7 +241,7 @@
       "description": "Empanada hecha con queso de campo",
       "stock": 5,
       "price": 1000,
-      "tags": []
+      "tags": [2,3,6]
     }
   },
   {
@@ -205,7 +254,7 @@
       "description": "El mejor lunchbox que has omido",
       "stock": 8,
       "price": 2500,
-      "tags": []
+      "tags": [1,6,7]
     }
   },
   {
@@ -218,7 +267,7 @@
       "description": "Sushi relleno de pollo, queso crema y ciboulette",
       "stock": 12,
       "price": 1200,
-      "tags": []
+      "tags": [5]
     }
   },
   {
@@ -231,7 +280,7 @@
       "description": "Lasagna cacera con pino de lomo liso y pasas carozzi",
       "stock": 3,
       "price": 2300,
-      "tags": []
+      "tags": [1,4,6,7]
     }
   },
   {
@@ -291,7 +340,7 @@
     "pk": 3,
     "fields": {
       "user": 5,
-      "image": "default/AvatarVendedor4.png",
+      "image": "default/AvatarVendedor5.png",
       "cash": true,
       "credit": false,
       "debit": false,
