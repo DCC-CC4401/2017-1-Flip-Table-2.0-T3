@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="section"></div>
+    <main>
+        <div class="section"></div>
+
+        <h5 style="text-align: center;" class="teal-text">Eliminar cuenta</h5>
+        <div class="section">
+            <h6 style="align-content: center" class="red-text">Atención, esto eliminará toda tu información. </h6>
+            <h6 style="align-content: center">Si estás seguro de lo que estás haciendo, ingresa tu contraseña a
+                continuación</h6>
+        </div>
+
+        <div class="container">
+            <div class="z-depth-1 grey lighten-4 row"
+                 style="margin-left: 2%; margin-right: 2%; padding: 30px 30px 0 30px; border: 1px solid #EEE;">
+
+                <form class="col s12" method="post">
+                    {% csrf_token %}
+                    <div class='row'>
+                        <div class='input-field col s12 m12'>
+                            <label style="text-align: center;" for='{{ password.id_for_label }}'>Ingresa tu contraseña para
+                                confirmar</label>
+                            {{ password }}
+                        </div>
+                    </div>
+
+
+                    <div class='row' style="align-content: center">
+                        <button type='submit' name='btn_login' class='col l6 offset-l3 btn btn-large waves-effect teal'>
+                            ELIMINAR CUENTA
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div style="text-align: center;"><a
+                href="{% url 'map:index' %}"> Volver a la página principal </a></div>
+
+
+        <div class="section"></div>
+        <div class="section"></div>
+    </main>
+{% endblock %}

@@ -3,8 +3,22 @@ from .forms import ClientCreateForm, PeddlerCreateForm, EstablishedCreateForm, C
     PeddlerUpdateForm
 from .models import Peddler, Established, Client
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user
+
+def delete_user(request):
+    if request.method == 'POST':
+        username = get_user(request)
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            u = request.user
+            u.delete()
+            return redirect('map:index')
+    return render(request, 'delete.html')
 
 
+@login_required(login_url='/account/login')
 def edit_user(request):
     if Peddler.objects.filter(user=request.user).exists():
         return redirect('account:edit_peddler')
@@ -13,7 +27,7 @@ def edit_user(request):
     else:
         return redirect('account:edit_established')
 
-
+@login_required(login_url='/account/login')
 def edit_client(request):
     try:
         profile = request.user
@@ -28,7 +42,7 @@ def edit_client(request):
         form = ClientUpdateForm(instance=request.user)
     return render(request, 'edit_client.html', {'form': form})
 
-
+@login_required(login_url='/account/login')
 def edit_peddler(request):
     try:
         profile = request.user
@@ -43,7 +57,7 @@ def edit_peddler(request):
         form = PeddlerUpdateForm(instance=request.user)
     return render(request, 'edit_peddler.html', {'form': form})
 
-
+@login_required(login_url='/account/login')
 def edit_established(request):
     try:
         profile = request.user

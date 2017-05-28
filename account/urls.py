@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 app_name = 'account'
 
 urlpatterns = [
+    url(r'^delete/$', views.delete_user, name='delete'),
 
     url(r'^edit/$', views.edit_user, name='edit_user'),
 
