@@ -202,7 +202,11 @@
       "description": "La carne mongoliana m\u00e1s rica que hayan probado",
       "stock": 20,
       "price": 2990,
-      "tags": [1,6,7]
+      "tags": [
+        1,
+        6,
+        7
+      ]
     }
   },
   {
@@ -215,7 +219,11 @@
       "description": "El pollo mongoliano mas ricoque hayan probado",
       "stock": 10,
       "price": 1990,
-      "tags": [1,6,7]
+      "tags": [
+        1,
+        6,
+        7
+      ]
     }
   },
   {
@@ -228,7 +236,9 @@
       "description": "Empanada cacera con pino de carne mechada",
       "stock": 15,
       "price": 1000,
-      "tags": [6]
+      "tags": [
+        6
+      ]
     }
   },
   {
@@ -241,7 +251,11 @@
       "description": "Empanada hecha con queso de campo",
       "stock": 5,
       "price": 1000,
-      "tags": [2,3,6]
+      "tags": [
+        2,
+        3,
+        6
+      ]
     }
   },
   {
@@ -254,7 +268,11 @@
       "description": "El mejor lunchbox que has omido",
       "stock": 8,
       "price": 2500,
-      "tags": [1,6,7]
+      "tags": [
+        1,
+        6,
+        7
+      ]
     }
   },
   {
@@ -267,7 +285,9 @@
       "description": "Sushi relleno de pollo, queso crema y ciboulette",
       "stock": 12,
       "price": 1200,
-      "tags": [5]
+      "tags": [
+        5
+      ]
     }
   },
   {
@@ -280,7 +300,12 @@
       "description": "Lasagna cacera con pino de lomo liso y pasas carozzi",
       "stock": 3,
       "price": 2300,
-      "tags": [1,4,6,7]
+      "tags": [
+        1,
+        4,
+        6,
+        7
+      ]
     }
   },
   {
@@ -352,7 +377,14 @@
     "pk": 1,
     "fields": {
       "user": 1,
-      "image": "default/AvatarEstudiante.png"
+      "image": "default/AvatarEstudiante.png",
+      "f_peddler": [
+        1,
+        2
+      ],
+      "f_established": [
+        1
+      ]
     }
   },
   {
@@ -360,7 +392,12 @@
     "pk": 2,
     "fields": {
       "user": 2,
-      "image": "default/AvatarEstudiante3.png"
+      "image": "default/AvatarEstudiante3.png",
+      "f_peddler": [
+        2,
+        3
+      ],
+      "f_established": []
     }
   }
 ]

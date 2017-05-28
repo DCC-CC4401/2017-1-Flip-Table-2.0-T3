@@ -11,11 +11,15 @@
         <div class="container">
             <div id="profile-page-header" class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="{% static 'img/food-background3.png' %}" alt="user background">
+                    <img class="activator" src="{% static 'img/food-background3.png' %}" alt="seller background">
                 </div>
                 <div class="row show-on-small">
                     <a class="card-profile-image-small">
+<<<<<<< HEAD
                         <img src="{{ seller.image.url }}" alt="profile image"
+=======
+                        <img src="{{ seller_profile.image.url }}" alt="profile image"
+>>>>>>> origin/develop
                              class="circle z-depth-2 responsive-img activator">
                     </a>
                 </div>
@@ -23,7 +27,7 @@
                 <div class="card-content s12">
                     <div class="row">
                         <div class="col s6 m3 l3 center-align">
-                            <h4 class="card-title grey-text flow-text text-darken-4 offset-s3 center">{{ user.first_name }} {{ user.last_name }}</h4>
+                            <h4 class="card-title grey-text flow-text text-darken-4 offset-s3 center">{{ seller.first_name }} {{ seller.last_name }}</h4>
                             <p class="medium-small flow-text grey-text center">
                                 {% if isPeddler %}
                                     Vendedor Ambulante
@@ -37,7 +41,8 @@
                                      end if-->
                             {% else %}
                                 <p class="flow-text text-darken-4 center" style="font-size: 0.88rem;">
-                                    Horario: <a class="light-green-text">{{ seller.start }} - {{ seller.end }}</a>
+                                    Horario: <a class="light-green-text">{{ seller_profile.start }}
+                                    - {{ seller_profile.end }}</a>
                                 </p>
                             {% endif %}
                         </div>
@@ -48,44 +53,51 @@
                         <div class="col s6 m3 l3 center-align">
                             <h4 class=" grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de
                                 pago</h4>
-                            {% if seller.cash %}
+                            {% if seller_profile.cash %}
                                 <p class="medium-small flow-text grey-text center">Efectivo</p>
-                            {% else %}
                             {% endif %}
-                            {% if seller.credit %}
+                            {% if seller_profile.credit %}
                                 <p class="medium-small flow-text grey-text center">Credito</p>
-                            {% else %}
                             {% endif %}
-                            {% if seller.debit %}
+                            {% if seller_profile.debit %}
                                 <p class="medium-small flow-text grey-text center">Debito</p>
-                            {% else %}
                             {% endif %}
-                            {% if seller.social %}
+                            {% if seller_profile.social %}
                                 <p class="medium-small flow-text grey-text center">Junaeb</p>
-                            {% else %}
                             {% endif %}
                         </div>
+
                         <div class="col s6 m3 l3 center-align">
-                            <div class="switch" style="margin-left: 10px;">
+                            <a class="switch" style="margin-left: 10px;">
                                 <h4 class="card-title grey-text flow-text text-darken-4">Favorito</h4>
-                                <!--<input type="checkbox"><span class="lever"></span>-->
-                                <h6><i class="material-icons amber-text">grade</i>
+                                {% if isClient %}
+                                    <a href="{% url 'showcase:favorite_seller' seller.id %}">
+                                        <i id="favorite" class=" material-icons amber-text"
+                                        >{% if isFavorite %}star{% else %}star_border{% endif %}</i></a>
+                                    <span id="favorite_count" class=" grey-text flow-text text-darken-4"
+                                          style="font-size:24px; line-height:35px;">{{ favorite }}</span>
+                                {% else %}
+                                    <h6>
+                                    <i class="material-icons amber-text">star_border</i>
                                     <span class=" grey-text flow-text text-darken-4"
-                                          style="font-size:24px; line-height:35px;">42</span>
+                                          style="font-size:24px; line-height:35px;">{{ favorite }}</span>
+                                {% endif %}
                                 </h6>
-                            </div>
                         </div>
                     </div>
 
-                    <div class="col s3 l2 right-align">
-                        <a class="btn-floating activator waves-effect waves-light darken-2">
-                            <i class="material-icons">mode_edit</i>
-                        </a>
-                    </div>
+
                 </div>
 
-
+                <div class="col s3 l2 right-align">
+                    <a class="btn-floating activator waves-effect waves-light darken-2">
+                        <i class="material-icons">mode_edit</i>
+                    </a>
+                </div>
             </div>
+
+
+        </div>
         </div>
 
         <div id="profile-page-content" class="row">
@@ -116,10 +128,10 @@
                                                 </li>
                                                 <li>Categoria:
                                                     {% with dish.tags.all as tags %}
-                                                    {% for tag in tags %}
-                                                        {{ tag.name }},
-                                                    {% endfor %}
-                                                {% endwith %}
+                                                        {% for tag in tags %}
+                                                            {{ tag.name }},
+                                                        {% endfor %}
+                                                    {% endwith %}
                                                 </li>
                                                 <li>Stock: {{ dish.stock }}</li>
                                                 <li>Descripción: {{ dish.description }}
@@ -135,7 +147,7 @@
 
                         {% endfor %}
 
-                        <!-- Only for reference, delete in later version-->
+                        <!-- Only for reference, must be deleted in later version-->
                         <div class="col s6 m6 l4">
                             <div class="container">
                                 <div class="card z-depth-1">
