@@ -337,6 +337,9 @@
                                                     <span class="card-title activator grey-text text-darken-4">Jugo<i
                                                             class="material-icons right">more_vert</i></span>
                                         <p><a class="teal-text">$300</a></p>
+                                        <a href="{% url 'showcase:item_edit' %}?next={{ request.path|urlencode }}" class="btn-floating activator waves-effect waves-light darken-2">
+                                            <i class="material-icons">mode_edit</i>
+                                        </a>
                                     </div>
                                     <div class="card-reveal">
                                                     <span class="card-title grey-text text-darken-4">Jugo<i

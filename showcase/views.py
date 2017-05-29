@@ -26,6 +26,10 @@ def item_new(request):
     context = {}
     return render(request, 'item_new.html', context)
 
+def item_edit(request):
+    context = {}
+    return render(request, 'item_edit.html', context)
+
 
 # class ShowcaseView(generic.ListView):
 #     template_name = 'showcase.html'
