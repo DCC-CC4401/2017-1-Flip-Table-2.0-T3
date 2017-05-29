@@ -219,15 +219,15 @@ class PeddlerUpdateForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email')
 
-def save(self, commit=True):
-    if not commit:
-        raise NotImplementedError("Can't create User and Profile without database save")
-    profile = Peddler.objects.get(user=self.instance)
-    print(profile)
-    profile.image = "default/AvatarVendedor" + self.cleaned_data['choices'] + ".png"
-    profile.cash = self.cleaned_data['cash']
-    profile.credit = self.cleaned_data['credit']
-    profile.debit = self.cleaned_data['debit']
-    profile.social = self.cleaned_data['social']
-    profile.save()
-    return profile
+    def save(self, commit=True):
+        if not commit:
+            raise NotImplementedError("Can't create User and Profile without database save")
+        profile = Peddler.objects.get(user=self.instance)
+        print(profile)
+        profile.image = "default/AvatarVendedor" + self.cleaned_data['choices'] + ".png"
+        profile.cash = self.cleaned_data['cash']
+        profile.credit = self.cleaned_data['credit']
+        profile.debit = self.cleaned_data['debit']
+        profile.social = self.cleaned_data['social']
+        profile.save()
+        return profile
