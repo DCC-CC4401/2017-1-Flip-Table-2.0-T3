@@ -7,6 +7,8 @@ from django.views.generic import View
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
+from .forms import DishCreateForm
+
 from django.http import JsonResponse
 
 from account.models import Client, Peddler, Established
@@ -88,3 +90,17 @@ def favorite_seller(request, seller_id):
             client.f_established.add(seller)
     client.save()
     return HttpResponse(status=204)
+
+def creatingDish(request):
+    if request.method == 'POST':
+        form = DishCreateForm(request.POST)
+        #if form.is_valid():
+        #    user, user_profile = form.save()
+        #    user.save()
+        #    messages.add_message(request, 25, "Te has registrado con éxito")
+        #    return redirect('account:confirm_registration')
+    else:
+        form = DishCreateForm()
+
+    next = request.POST.get('next', '/')
+    return HttpResponse(next)
