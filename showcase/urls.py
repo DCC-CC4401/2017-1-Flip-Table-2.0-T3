@@ -9,7 +9,6 @@ urlpatterns = [
     # /showcase/
     url(r'^$', views.index, name='index'),
 
-
     # /showcase/<seller_id>/
     url(r'^(?P<seller_id>[0-9]+)/$', views.showcase, name='showcase'),
 

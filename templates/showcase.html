@@ -1,28 +1,30 @@
 {% extends 'base.html' %}
 
-{%  block active %}
+{% block active %}
     <div>
-    {% if isPeddler and isPeddlerInHisProfile %}
-        <li><a class="subheader">Activo</a></li>
+        {% if isPeddler and isPeddlerInHisProfile %}
+            <li><a class="subheader">Activo</a></li>
             <li>
-            <a href="{% url 'showcase:checkin' seller.id %}">
-                <div class="switch center" style="margin-left: 10px;">
-                    <label>
-                        No<input type="checkbox"><span class="lever"></span>Si
-                    </label>
-                </div>
-            </a>
+                <a href="{% url 'showcase:checkin' seller.id %}">
+                    <div class="switch center" style="margin-left: 10px;">
+                        <label>
+                            No<input type="checkbox"><span class="lever"></span>Si
+                        </label>
+                    </div>
+                </a>
             </li>
-    {% endif %}
+        {% endif %}
     </div>
 {% endblock %}
 
 {% block content %}
     {% load staticfiles %}
+    {% load humanize %}
     <script>
         $(document).ready(function () {
             $('.modal').modal();
         });
+        var count = $('#stock_count').value()
     </script>
     <main>
 
@@ -118,6 +120,7 @@
                                           style="font-size:24px; line-height:35px;">{{ favorite }}</span>
                                 {% endif %}
                                 </h6>
+                            </a>
                         </div>
                     </div>
 
@@ -152,14 +155,15 @@
                                         <div class="card-content">
                                                     <span class="card-title activator grey-text text-darken-4">{{ dish.name }}<i
                                                             class="material-icons right">more_vert</i></span>
-                                            <p><a class="teal-text">{{ dish.price }}</a></p>
+                                            <p><a class="teal-text">${{ dish.price|intcomma }}</a></p>
 
                                         </div>
                                         <div class="card-reveal">
                                                     <span class="card-title grey-text text-darken-4">{{ dish.name }}<i
                                                             class="material-icons right">close</i></span>
                                             <ul>
-                                                <li>Precio: <a class="green-text light-green-text">{{ dish.price }}</a>
+                                                <li>Precio: <a
+                                                        class="green-text light-green-text">${{ dish.price|intcomma }}</a>
                                                 </li>
                                                 <li>Categoria:
                                                     {% with dish.tags.all as tags %}
@@ -168,7 +172,39 @@
                                                         {% endfor %}
                                                     {% endwith %}
                                                 </li>
-                                                <li>Stock: {{ dish.stock }}</li>
+                                                <li>
+                                                    {% if user.is_authenticated and user.id == seller.id %}
+                                                        <form action="{% url 'showcase:showcase' seller.id %}"
+                                                              method="post">
+                                                            {% csrf_token %}
+                                                            <div>Stock:</div>
+                                                            <a id="stock_dec"
+                                                               class="btn-floating waves-effect waves-light red btn-small">
+                                                                <i class="material-icons">remove</i>
+                                                            </a>
+                                                            <input type="hidden" name="dish_id" value="{{ dish.id }}">
+                                                            <input id="stock_count" value="{{ dish.stock }}"
+                                                                   type="number" name="stock_count"
+                                                                   min="0" step="1" class="validate"
+                                                                   style="height: 1.5em; width: 30%; text-align: center">
+                                                            <label for="stock_count"></label>
+                                                            <a id="stock_inc"
+                                                               class="btn-floating waves-effect waves-light red btn-small">
+                                                                <i class="material-icons">add</i>
+                                                            </a>
+                                                            <input type="submit" id="update_stock"
+                                                                   style="display: none">
+                                                            <label for="update_stock">
+                                                                <a id="stock_inc"
+                                                                   class="btn-floating waves-effect waves-light green btn-small">
+                                                                    <i class="material-icons">check</i>
+                                                                </a>
+                                                            </label>
+                                                        </form>
+                                                    {% else %}
+                                                        Stock: {{ dish.stock }}
+                                                    {% endif %}
+                                                </li>
                                                 <li>Descripción: {{ dish.description }}
                                                     <p class="right-align"><a
                                                             class="waves-effect waves-light"
@@ -237,8 +273,6 @@
                                             </li>
                                             <li>Categoria: Almuerzos</li>
                                             <li>Stock: 20</li>
-                                            <!--<small class="btn-floating btn-small waves-effect waves-light red accent-2"><i class="material-icons tiny">add</i></small>-->
-                                            <!--br-->
                                             <li>Descripción: Deliciosa pizza hecha con masa casera, viene
                                                 disponible en 3 tipos:
                                                 <p>-Peperoni: Queso mozzarella, Pepperoni</p>
