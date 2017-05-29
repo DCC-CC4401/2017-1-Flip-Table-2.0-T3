@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from .models import Client, Peddler, Established
+from django.views.generic.edit import UpdateView
 from django.contrib.admin import widgets
 
 
@@ -109,10 +110,73 @@ class EstablishedCreateForm(UserCreationForm):
         return user, profile
 
 
-class LoginCreateForm(AuthenticationForm):
+class ClientUpdateForm(forms.ModelForm):
+    CHOICES = (
+        ('1', 'First',), ('2', 'Second',),
+        ('3', 'Third',), ('4', 'Fourth',))
+    choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+
     def __init__(self, *args, **kwargs):
-        super(LoginCreateForm, self).__init__(*args, **kwargs)
+        super(ClientUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+        self.fields['choices'].widget.attrs.update({'class': 'with-gap'})
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ['first_name', 'last_name', 'email']
+
+
+class EstablishedUpdateForm(forms.ModelForm):
+    cash = forms.BooleanField(initial=True, required=False)
+    credit = forms.BooleanField(initial=False, required=False)
+    debit = forms.BooleanField(initial=False, required=False)
+    social = forms.BooleanField(initial=False, required=False)
+    start = forms.TimeField()
+    end = forms.TimeField()
+
+    CHOICES = (
+        ('1', 'First',), ('2', 'Second',),
+        ('3', 'Third',), ('4', 'Fourth',))
+    choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+
+    def __init__(self, *args, **kwargs):
+        super(EstablishedUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+        self.fields['first_name'].widget.attrs.update({'autofocus': 'autofocus'})
+        self.fields['cash'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['credit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['debit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['social'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['choices'].widget.attrs.update({'class': 'with-gap'})
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class PeddlerUpdateForm(forms.ModelForm):
+    cash = forms.BooleanField(initial=True, required=False)
+    credit = forms.BooleanField(initial=False, required=False)
+    debit = forms.BooleanField(initial=False, required=False)
+    social = forms.BooleanField(initial=False, required=False)
+
+    CHOICES = (
+        ('1', 'First',), ('2', 'Second',),
+        ('3', 'Third',), ('4', 'Fourth',))
+    choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+
+    def __init__(self, *args, **kwargs):
+        super(PeddlerUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+        self.fields['first_name'].widget.attrs.update({'autofocus': 'autofocus'})
+        self.fields['cash'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['credit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['debit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['social'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['choices'].widget.attrs.update({'class': 'with-gap'})
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')

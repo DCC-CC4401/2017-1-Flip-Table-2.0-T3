@@ -3,7 +3,7 @@
     "model": "auth.user",
     "pk": 1,
     "fields": {
-      "password": "pbkdf2_sha256$36000$qD0DGi7UKK5r$Ee2Y4C0RSaCOnjKBXwq8f4Z0tL7vAZdJW+LqNUS+Gds=",
+      "password": "pbkdf2_sha256$123436000$qD0DGi7UKK5r$Ee2Y4C0RSaCOnjKBXwq8f4Z0tL7vAZdJW+LqNUS+Gds=",
       "last_login": null,
       "is_superuser": false,
       "username": "alumno1",
@@ -332,8 +332,8 @@
       "credit": false,
       "debit": false,
       "social": false,
-      "start": "10:20:00",
-      "end": "20:34:00"
+      "start": "8:20:00",
+      "end": "14:34:00"
     }
   },
   {

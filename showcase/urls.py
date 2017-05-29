@@ -15,6 +15,12 @@ urlpatterns = [
     # /showcase/<seller_id>/favorite
     url(r'^(?P<seller_id>[0-9]+)/favorite/$', views.favorite_seller, name='favorite_seller'),
 
+<<<<<<< HEAD
+=======
+    # /showcase/<seller_id>/checkin
+    url(r'^(?P<seller_id>[0-9]+)/checkin/$', views.checkin, name='checkin'),
+
+>>>>>>> refs/remotes/origin/develop
     # /showcase/item_new
     url(r'^item_new/$', views.item_new, name='item_new'),
 
