@@ -4,6 +4,7 @@ from django import forms
 from .models import Client, Peddler, Established
 from django.views.generic.edit import UpdateView
 from django.contrib.admin import widgets
+from django.db import models
 
 
 class ClientCreateForm(UserCreationForm):
@@ -105,7 +106,7 @@ class EstablishedCreateForm(UserCreationForm):
         image = "default/AvatarEstudiante" + self.cleaned_data['choices'] + ".png"
         profile = Established(user=user, image=image, cash=self.cleaned_data['cash'], credit=self.cleaned_data['credit'],
                               debit=self.cleaned_data['debit'], social=self.cleaned_data['social'],
-                              start=self.cleaned_data['start'], end=self.cleaned_data['end'], )
+                              start=self.cleaned_data['start'], end=self.cleaned_data['end'])
         profile.save()
         return user, profile
 
@@ -125,6 +126,15 @@ class ClientUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
+
+    def save(self, commit=True):
+        if not commit:
+            raise NotImplementedError("Can't create User and Profile without database save")
+        profile = self.instance
+        print(profile)
+        profile.image = "default/AvatarEstudiante" + self.cleaned_data['choices'] + ".png"
+        profile.save()
+        return profile
 
 
 class EstablishedUpdateForm(forms.ModelForm):
@@ -155,6 +165,20 @@ class EstablishedUpdateForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
+    def save(self, commit=True):
+        if not commit:
+            raise NotImplementedError("Can't create User and Profile without database save")
+        profile = self.instance
+        profile.image = "default/AvatarVendedor" + self.cleaned_data['choices'] + ".png"
+        profile.cash = self.cleaned_data['cash']
+        profile.credit = self.cleaned_data['credit']
+        profile.debit = self.cleaned_data['debit']
+        profile.social = self.cleaned_data['social']
+        profile.start = self.cleaned_data['start']
+        profile.end = self.cleaned_data['end']
+        profile.save()
+        return profile
+
 class PeddlerUpdateForm(forms.ModelForm):
     cash = forms.BooleanField(initial=True, required=False)
     credit = forms.BooleanField(initial=False, required=False)
@@ -180,3 +204,16 @@ class PeddlerUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
+
+    def save(self, commit=True):
+        if not commit:
+            raise NotImplementedError("Can't create User and Profile without database save")
+        profile = Peddler.objects.get(user=self.instance)
+        print(profile)
+        profile.image = "default/AvatarVendedor" + self.cleaned_data['choices'] + ".png"
+        profile.cash = self.cleaned_data['cash']
+        profile.credit = self.cleaned_data['credit']
+        profile.debit = self.cleaned_data['debit']
+        profile.social = self.cleaned_data['social']
+        profile.save()
+        return profile
