@@ -68,7 +68,8 @@
                             <h4 class="center card-title flow-text text-darken-4">Estado</h4>
                             {% if not isPeddler %}
                                 {% if isAvailable %}
-                                    <p id="available" class="medium-small flow-text center light-green-text">Disponible</p>
+                                    <p id="available" class="medium-small flow-text center light-green-text">
+                                        Disponible</p>
                                 {% else %}
                                     <p id="available" class="medium-small flow-text center grey-text">No Disponible</p>
                                 {% endif %}
@@ -160,15 +161,15 @@
 
                                         </div>
                                         <div class="card-reveal">
-                                                    <span class="card-title grey-text text-darken-4">{{ dish.name }}
+                                        <span class="card-title grey-text text-darken-4">
+                                                        <i class="material-icons right">close</i></span>
+                                            {{ dish.name }}
+                                            {% if user.is_authenticated and user.id == seller.id %}
+                                                <a href="{% url 'showcase:update_dish' seller.id dish.id %}">
+                                                    <i class="material-icons teal-text">mode_edit</i>
+                                                </a>
+                                            {% endif %}
 
-                                                        {% if user.is_authenticated and user.id == seller.id %}
-                                                        <i class="material-icons teal-text">mode_edit</i>
-
-                                                        {% endif %}
-
-                                                        <i
-                                                                class="material-icons right">close</i></span>
                                             <ul>
                                                 <li>Precio: <a
                                                         class="green-text light-green-text">${{ dish.price|intcomma }}</a>

@@ -10,7 +10,7 @@ from .models import Transaction
 
 import datetime
 
-from .forms import DishCreateForm
+from showcase.forms import DishCreateForm, DishUpdateForm
 
 from account.models import Client, Peddler, Established
 from showcase.admin import Dish
@@ -134,21 +134,6 @@ def check_in(request, seller_id):
     return HttpResponse(status=204)
 
 
-def creatingDish(request):
-    if request.method == 'POST':
-        form = DishCreateForm(request.POST)
-        # if form.is_valid():
-        #    user, user_profile = form.save()
-        #    user.save()
-        #    messages.add_message(request, 25, "Te has registrado con éxito")
-        #    return redirect('account:confirm_registration')
-    else:
-        form = DishCreateForm()
-
-    next = request.POST.get('next', '/')
-    return HttpResponse(next)
-
-
 def create_dish(request, seller_id):
     form = DishCreateForm(request.POST or None)
     user = get_object_or_404(User, id=seller_id)
@@ -171,6 +156,19 @@ def create_dish(request, seller_id):
         'form': form,
     }
     return render(request, 'create_dish.html', context)
+
+
+def update_dish(request, seller_id, dish_id):
+    dish = get_object_or_404(Dish, id=dish_id)
+    if request.method == 'POST':
+        form = DishUpdateForm(data=request.POST, instance=dish)
+        if form.is_valid():
+            dish.icon = "default/" + dict(form.fields['choices'].choices)[form.cleaned_data['choices']]
+            form.save()
+            return redirect('showcase:showcase', seller_id)
+    else:
+        form = DishUpdateForm(instance=dish)
+    return render(request, 'update_dish.html', {'form': form})
 
 
 def statistics(request):

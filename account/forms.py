@@ -141,7 +141,7 @@ class ClientUpdateForm(forms.ModelForm):
             raise NotImplementedError("Can't create User and Profile without database save")
         profile = self.instance
         print(profile)
-        profile.image = "default/AvatarEstudiante" + self.cleaned_data['choices'] + ".png"
+        profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
         profile.save()
         return profile
 
@@ -180,7 +180,7 @@ class EstablishedUpdateForm(forms.ModelForm):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
         profile = self.instance
-        profile.image = "default/AvatarVendedor" + self.cleaned_data['choices'] + ".png"
+        profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
         profile.cash = self.cleaned_data['cash']
         profile.credit = self.cleaned_data['credit']
         profile.debit = self.cleaned_data['debit']
@@ -224,7 +224,7 @@ class PeddlerUpdateForm(forms.ModelForm):
             raise NotImplementedError("Can't create User and Profile without database save")
         profile = Peddler.objects.get(user=self.instance)
         print(profile)
-        profile.image = "default/AvatarVendedor" + self.cleaned_data['choices'] + ".png"
+        profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
         profile.cash = self.cleaned_data['cash']
         profile.credit = self.cleaned_data['credit']
         profile.debit = self.cleaned_data['debit']
