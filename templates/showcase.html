@@ -5,7 +5,6 @@
         {% if isPeddler and isPeddlerInHisProfile %}
             <li><a class="subheader">Activo</a></li>
             <li>
-
                 <div class="switch center" style="margin-left: 10px;" id="checkin">
                     <label for="available_switch">
                         No
@@ -15,7 +14,6 @@
                         Si
                     </label>
                 </div>
-
             </li>
         {% endif %}
     </div>
@@ -67,18 +65,25 @@
                             {% endif %}
                         </div>
                         <div class="col s6 m3 l3 center-align" id="status">
-                            <h4 class="card-title flow-text text-darken-4">Estado</h4>
-
-                            <p id="available" class="medium-small flow-text center
-                            {% if seller_profile.available %}
-                                light-green-text">Disponible
+                            <h4 class="center card-title flow-text text-darken-4">Estado</h4>
+                            {% if not isPeddler %}
+                                {% if isAvailable %}
+                                    <p id="available" class="medium-small flow-text center light-green-text">Disponible</p>
+                                {% else %}
+                                    <p id="available" class="medium-small flow-text center grey-text">No Disponible</p>
+                                {% endif %}
                             {% else %}
-                                grey-text">No Disponible
+                                <p id="available" class="medium-small flow-text center
+                                {% if seller_profile.available %}
+                                    light-green-text">Disponible
+                                {% else %}
+                                    grey-text">No Disponible
+                                {% endif %}
+                                </p>
                             {% endif %}
-                            </p>
                         </div>
                         <div class="col s6 m3 l3 center-align">
-                            <h4 class=" grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de
+                            <h4 class=" center grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de
                                 pago</h4>
                             {% if seller_profile.cash %}
                                 <p class="medium-small flow-text grey-text center">Efectivo</p>
@@ -123,6 +128,7 @@
 
                 </div>
 
+                <!--If seller is in his profile-->
                 <div class="col s3 l2 right-align">
                     <a class="btn-floating activator waves-effect waves-light darken-2">
                         <i class="material-icons">mode_edit</i>

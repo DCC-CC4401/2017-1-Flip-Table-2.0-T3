@@ -6,6 +6,7 @@ from django.views import generic
 from django.views.generic import View
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from .models import Transaction
 
 import datetime
 
@@ -49,6 +50,9 @@ def showcase(request, seller_id):
         old_stock = dish.stock
         if new_stock < old_stock:
             dish.sold = old_stock - new_stock
+            seller = User.objects.get(id=seller_id)
+            transaction = Transaction(user=seller, dish=dish, price=dish.price, quantity=dish.sold)
+            transaction.save()
         dish.stock = new_stock
         dish.save()
         return HttpResponse(status=204)
@@ -167,3 +171,16 @@ def create_dish(request, seller_id):
         'form': form,
     }
     return render(request, 'create_dish.html', context)
+
+
+def statistics(request):
+    months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+              'Noviembre', 'Diciembre']
+    earnings = {}
+    for i, month in enumerate(months):
+        sum = 0
+        for item in Transaction.objects.all():
+            if item.date.month == i + 1 and request.user.username == item.user.username:
+                sum += item.price * item.quantity
+        earnings[month] = sum
+    return render(request, 'statistics.html', {'months': months, 'earnings': earnings})

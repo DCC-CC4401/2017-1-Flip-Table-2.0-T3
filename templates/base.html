@@ -62,37 +62,43 @@
 
         <!-- Boton de vendedor activo -->
 
-        {%  block active %}
+        {% block active %}
 
         {% endblock %}
 
 
         <!-- Boton de filtros -->
-
-        {% block filter %}
-            <li><a class="subheader">Filtros</a></li>
-            <li>
-                <div class="switch" style="margin-left: 10px;">
-                    <label>
-                        <input type="checkbox"><span class="lever"></span>Sólo mostrar favoritos
-                    </label>
-                </div>
-            </li>
-            <li>
-                <div class="switch" style="margin-left: 10px;">
-                    <label>
-                        <input type="checkbox"><span class="lever"></span>Snacks
-                    </label>
-                </div>
-            </li>
-            <li>
-                <div class="switch" style="margin-left: 10px;">
-                    <label>
-                        <input type="checkbox"><span class="lever"></span>Almuerzos
-                    </label>
-                </div>
-            </li>
-        {% endblock %}
+        {% if user.is_client %}
+            {% block filter %}
+                <li><a class="subheader">Filtros</a></li>
+                <li>
+                    <div class="switch" style="margin-left: 10px;">
+                        <label>
+                            <input type="checkbox"><span class="lever"></span>Sólo mostrar favoritos
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch" style="margin-left: 10px;">
+                        <label>
+                            <input type="checkbox"><span class="lever"></span>Snacks
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch" style="margin-left: 10px;">
+                        <label>
+                            <input type="checkbox"><span class="lever"></span>Almuerzos
+                        </label>
+                    </div>
+                </li>
+            {% endblock %}
+        {% else %}
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'showcase:statistics' %}"><i class="material-icons">trending_up</i>Ver
+                    estadísticas</a></li>
+            {% endif %}
+        {% endif %}
 
 
     </ul>

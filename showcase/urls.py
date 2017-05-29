@@ -21,6 +21,9 @@ urlpatterns = [
     # /showcase/<seller_id>/create_dish
     url(r'^(?P<seller_id>[0-9]+)/create_dish/$', views.create_dish, name='create_dish'),
 
+    # /showcase/<seller_id>/checkin
+    url(r'^statistics/$', views.statistics, name='statistics'),
+
     url(r'^item_edit/$', views.item_edit, name='item_edit'),
 
     # /showcase/item/<item_id>/
