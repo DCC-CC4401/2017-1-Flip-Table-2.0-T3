@@ -1,19 +1,38 @@
 {% extends 'base.html' %}
 
-{% block active %}
+{%  block active %}
+
     <div>
-        {% if isPeddler and isPeddlerInHisProfile %}
-            <li><a class="subheader">Activo</a></li>
+    {% if isPeddler and isPeddlerInHisProfile %}
+        <li><a class="subheader">Activo</a></li>
+        {% if seller_profile.available %}
             <li>
                 <a href="{% url 'showcase:checkin' seller.id %}">
-                    <div class="switch center" style="margin-left: 10px;">
+                    <div class="switch center" style="margin-left: 10px;" id="checkin">
+                        <label for="{{ seller_profile.available }}">
+                            No
+                            <input type="checkbox" checked>
+                            <span class="lever"></span>
+                            Si
+                        </label>
+                    </div>
+                </a>
+            </li>
+        {% else %}
+             <li>
+                <a href="{% url 'showcase:checkin' seller.id %}">
+                    <div class="switch center" style="margin-left: 10px;" id="checkin">
                         <label>
-                            No<input type="checkbox"><span class="lever"></span>Si
+                            No
+                            <input type="checkbox">
+                            <span class="lever"></span>
+                            Si
                         </label>
                     </div>
                 </a>
             </li>
         {% endif %}
+    {% endif %}
     </div>
 {% endblock %}
 
@@ -62,7 +81,7 @@
                                 </p>
                             {% endif %}
                         </div>
-                        <div class="col s6 m3 l3 center-align">
+                        <div class="col s6 m3 l3 center-align" id="status">
                             <h4 class="card-title flow-text text-darken-4">Estado</h4>
                             {% if not isPeddler %}
                                 <!--If Established isAvailable Disponible else No Disponible-->
