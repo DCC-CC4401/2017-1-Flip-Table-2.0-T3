@@ -93,6 +93,11 @@
                     </div>
                 </li>
             {% endblock %}
+        {% else %}
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'showcase:statistics' %}"><i class="material-icons">trending_up</i>Ver
+                    estadísticas</a></li>
+            {% endif %}
         {% endif %}
 
 

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 from account.models import Peddler, Established
 
+
 # Create your models here.
 
 
@@ -28,6 +29,7 @@ class Dish(models.Model):
     def __str__(self):
         return self.name
 
+
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     dish = models.ForeignKey(Dish, on_delete=models.DO_NOTHING)
@@ -35,13 +37,16 @@ class Transaction(models.Model):
     price = models.PositiveIntegerField()
     date = models.DateTimeField(auto_now_add=True)
 
+
 class Statistics(models.Model):
     transactions = models.ManyToManyField(Transaction, blank=True)
+
     def __init__(self, *args, **kwargs):
         super(Statistics, self).__init__(*args, **kwargs)
 
     def get(self):
         return None
+
 
 class MonthlyStatistics(Statistics):
     MonthlyRevenue = models.PositiveIntegerField(default=0)
@@ -57,5 +62,3 @@ class MonthlyStatistics(Statistics):
 
     def __unicode__(self):
         return u'%d %s' % (self.MonthlyRevenue, self.Month)
-
-

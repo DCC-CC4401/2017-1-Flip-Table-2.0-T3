@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="section"></div>
+    <main>
+        <div class="section"></div>
+
+        <h3 style="text-align: center;" class="teal-text">Estadísticas de venta</h3>
+
+        <div class="container">
+            <div class="z-depth-1 grey lighten-4 row"
+                 style="margin-left: 2%; margin-right: 2%; padding: 30px 30px 0 30px; border: 1px solid #EEE;">
+
+                <div class="section" align="center">
+                    <h4 style="align-content: center">Ventas anuales:</h4>
+                </div>
+
+                <ul class="teal-text">
+                    {% for key, value in earnings.items %}
+                        <h6 style="text-align: center">
+                            <li class="teal-text" style="align-content: center">{{ key }}: {{ value }}</li>
+                        </h6>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="section"></div>
+        <div class="section"></div>
+    </main>
+{% endblock %}
