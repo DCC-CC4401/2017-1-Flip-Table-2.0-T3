@@ -13,11 +13,15 @@ def delete_user(request):
     return render(request, 'delete.html')
 
 
+def password_reset_done(request):
+    return render(request, 'password_reset_done.html')
+
+
 @login_required(login_url='/account/login')
 def confirm_deleted(request):
     request.user.delete()
     messages.add_message(request, messages.SUCCESS, "Usuario eliminado exitosamente")
-    return render(request, 'deleted_confirmation.html', {'messages':messages})
+    return render(request, 'deleted_confirmation.html')
 
 
 def confirm_registration(request):
@@ -33,7 +37,7 @@ def edit_user(request):
     elif Established.objects.filter(user=request.user).exists():
         return redirect('account:edit_established')
     else:
-        return redirect('account:caca')
+        return redirect('map:index')
 
 
 @login_required(login_url='/account/login')
