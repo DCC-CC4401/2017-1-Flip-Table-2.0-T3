@@ -9,6 +9,9 @@ from django.http import HttpResponse
 
 import datetime
 
+from .forms import DishCreateForm
+
+
 from django.http import JsonResponse
 
 from account.models import Client, Peddler, Established
@@ -106,6 +109,7 @@ def favorite_seller(request, seller_id):
     return HttpResponse(status=204)
 
 
+
 def checkin(request, seller_id):
     seller = get_object_or_404(User, id=seller_id)
     seller_profile = get_object_or_404(Peddler, user=seller)
@@ -122,3 +126,18 @@ def checkin(request, seller_id):
 #     seller_profile.available = False
 #     seller_profile.save()
 #     return HttpResponse(status=204)
+
+def creatingDish(request):
+    if request.method == 'POST':
+        form = DishCreateForm(request.POST)
+        #if form.is_valid():
+        #    user, user_profile = form.save()
+        #    user.save()
+        #    messages.add_message(request, 25, "Te has registrado con éxito")
+        #    return redirect('account:confirm_registration')
+    else:
+        form = DishCreateForm()
+
+    next = request.POST.get('next', '/')
+    return HttpResponse(next)
+

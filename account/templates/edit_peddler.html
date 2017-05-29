@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'edit_base.html' %}
 {% block body %}
     {% load staticfiles %}
     {{ form.non_field_errors }}
@@ -8,7 +8,6 @@
             <label for="{{ form.first_name.id_for_label }}">Nombre</label>
             {{ form.first_name }}
         </div>
-
         <div class="input-field col s6">
             {{ form.last_name.errors }}
             <label for="{{ form.last_name.id_for_label }}">Apellido</label>
@@ -16,10 +15,10 @@
         </div>
     </div>
 
-
     <div class="row">
+        {{ form.email.errors }}
         <div class='input-field col s12 m12'>
-            {{ form.email.errors }}
+
             <label style="text-align: center" for="{{ form.email.id_for_label }}">Ingresa tu
                 e-mail</label>
             {{ form.email }}
@@ -27,10 +26,35 @@
     </div>
 
     <div class='row'>
+        Seleccione sus formas de pago:
+        <p>
+            {{ form.cash.errors }}
+            {{ form.cash }}
+            <label for="{{ form.cash.id_for_label }}">Efectivo</label>
+        </p>
+        <p>
+            {{ form.credit.errors }}
+            {{ form.credit }}
+            <label for="{{ form.credit.id_for_label }}">Tarjeta de Crédito</label>
+
+        </p>
+        <p>
+            {{ form.debit.errors }}
+            {{ form.debit }}
+            <label for="{{ form.debit.id_for_label }}">Tarjeta de Débito</label>
+        </p>
+        <p>
+            {{ form.social.errors }}
+            {{ form.social }}
+            <label for="{{ form.social.id_for_label }}">Tarjeta Junaeb</label>
+        </p>
+    </div>
+
+    <div class='row'>
         <p>Selecciona avatar:</p>
         {% for choice in form.choices %}
             {% with i=forloop.counter|stringformat:"s" %}
-                {% with 'img/AvatarEstudiante'|add:i|add:'.png' as image_url %}
+                {% with 'img/AvatarVendedor'|add:i|add:'.png' as image_url %}
                     {{ choice.tag }}
                     <label for="{{ choice.id_for_label }}"><img class="circle" style="max-width: 50px;"
                                                                 src="{% static image_url %}"></label>
@@ -48,7 +72,7 @@
 
 {% endblock %}
 
-{% block client %}
+{% block peddler %}
     value="#" disabled selected
 {% endblock %}
 
