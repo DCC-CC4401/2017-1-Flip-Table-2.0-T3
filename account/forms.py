@@ -8,8 +8,10 @@ from django.contrib.admin import widgets
 
 class ClientCreateForm(UserCreationForm):
     CHOICES = (
-        ('1', 'First',), ('2', 'Second',),
-        ('3', 'Third',), ('4', 'Fourth',))
+        ('1', 'AvatarEstudiante1.png',),
+        ('2', 'AvatarEstudiante2.png',),
+        ('3', 'AvatarEstudiante3.png',),
+        ('4', 'AvatarEstudiante4.png',))
     choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
     def __init__(self, *args, **kwargs):
@@ -27,7 +29,7 @@ class ClientCreateForm(UserCreationForm):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
         user = super(ClientCreateForm, self).save(commit=True)
-        image = "default/AvatarEstudiante" + self.cleaned_data['choices'] + ".png"
+        image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
         profile = Client(user=user, image=image)
         profile.save()
         return user, profile
@@ -40,8 +42,10 @@ class PeddlerCreateForm(UserCreationForm):
     social = forms.BooleanField(initial=False, required=False)
 
     CHOICES = (
-        ('1', 'First',), ('2', 'Second',),
-        ('3', 'Third',), ('4', 'Fourth',))
+        ('1', 'AvatarVendedor1.png',),
+        ('2', 'AvatarVendedor2.png',),
+        ('3', 'AvatarVendedor3.png',),
+        ('4', 'AvatarVendedor4.png',))
     choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
     def __init__(self, *args, **kwargs):
@@ -63,7 +67,7 @@ class PeddlerCreateForm(UserCreationForm):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
         user = super(PeddlerCreateForm, self).save(commit=True)
-        image = "default/AvatarVendedor" + self.cleaned_data['choices'] + ".png"
+        image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
         profile = Peddler(user=user, image=image, cash=self.cleaned_data['cash'], credit=self.cleaned_data['credit'],
                           debit=self.cleaned_data['debit'], social=self.cleaned_data['social'])
         profile.save()
@@ -79,8 +83,10 @@ class EstablishedCreateForm(UserCreationForm):
     end = forms.TimeField()
 
     CHOICES = (
-        ('1', 'First',), ('2', 'Second',),
-        ('3', 'Third',), ('4', 'Fourth',))
+        ('1', 'AvatarVendedor1.png',),
+        ('2', 'AvatarVendedor2.png',),
+        ('3', 'AvatarVendedor3.png',),
+        ('4', 'AvatarVendedor4.png',))
     choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
     def __init__(self, *args, **kwargs):
@@ -102,8 +108,9 @@ class EstablishedCreateForm(UserCreationForm):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
         user = super(EstablishedCreateForm, self).save(commit=True)
-        image = "default/AvatarEstudiante" + self.cleaned_data['choices'] + ".png"
-        profile = Established(user=user, image=image, cash=self.cleaned_data['cash'], credit=self.cleaned_data['credit'],
+        image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
+        profile = Established(user=user, image=image, cash=self.cleaned_data['cash'],
+                              credit=self.cleaned_data['credit'],
                               debit=self.cleaned_data['debit'], social=self.cleaned_data['social'],
                               start=self.cleaned_data['start'], end=self.cleaned_data['end'], )
         profile.save()
@@ -112,8 +119,10 @@ class EstablishedCreateForm(UserCreationForm):
 
 class ClientUpdateForm(forms.ModelForm):
     CHOICES = (
-        ('1', 'First',), ('2', 'Second',),
-        ('3', 'Third',), ('4', 'Fourth',))
+        ('1', 'AvatarEstudiante1.png',),
+        ('2', 'AvatarEstudiante2.png',),
+        ('3', 'AvatarEstudiante3.png',),
+        ('4', 'AvatarEstudiante4.png',))
     choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
     def __init__(self, *args, **kwargs):
@@ -136,8 +145,10 @@ class EstablishedUpdateForm(forms.ModelForm):
     end = forms.TimeField()
 
     CHOICES = (
-        ('1', 'First',), ('2', 'Second',),
-        ('3', 'Third',), ('4', 'Fourth',))
+        ('1', 'AvatarVendedor1.png',),
+        ('2', 'AvatarVendedor2.png',),
+        ('3', 'AvatarVendedor3.png',),
+        ('4', 'AvatarVendedor4.png',))
     choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
     def __init__(self, *args, **kwargs):
@@ -155,6 +166,7 @@ class EstablishedUpdateForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
+
 class PeddlerUpdateForm(forms.ModelForm):
     cash = forms.BooleanField(initial=True, required=False)
     credit = forms.BooleanField(initial=False, required=False)
@@ -162,8 +174,10 @@ class PeddlerUpdateForm(forms.ModelForm):
     social = forms.BooleanField(initial=False, required=False)
 
     CHOICES = (
-        ('1', 'First',), ('2', 'Second',),
-        ('3', 'Third',), ('4', 'Fourth',))
+        ('1', 'AvatarVendedor1.png',),
+        ('2', 'AvatarVendedor2.png',),
+        ('3', 'AvatarVendedor3.png',),
+        ('4', 'AvatarVendedor4.png',))
     choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
     def __init__(self, *args, **kwargs):

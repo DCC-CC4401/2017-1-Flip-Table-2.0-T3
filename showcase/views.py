@@ -24,7 +24,8 @@ def index(request):
 
 def item_new(request):
     context = {}
-    return render(request, 'item_new.html', context)
+    return render(request, 'create_dish.html', context)
+
 
 def item_edit(request):
     context = {}
@@ -142,3 +143,27 @@ def creatingDish(request):
 
     next = request.POST.get('next', '/')
     return HttpResponse(next)
+
+
+def create_dish(request, seller_id):
+    form = DishCreateForm(request.POST or None)
+    user = get_object_or_404(User, id=seller_id)
+    if form.is_valid():
+        dishes = user.dish_set.all()
+        for dish in dishes:
+            if dish.name == form.cleaned_data['name']:
+                context = {
+                    'form': form,
+                    'error_message': 'Ya tienes un plato con este nombre',
+                }
+                return render(request, 'create_dish.html', context)
+        dish = form.save(commit=False)
+        dish.icon = "default/" + dict(form.fields['choices'].choices)[form.cleaned_data['choices']]
+        dish.image = "default/rice.png"
+        dish.user = user
+        dish.save()
+        return redirect('showcase:showcase', seller_id)
+    context = {
+        'form': form,
+    }
+    return render(request, 'create_dish.html', context)

@@ -93,7 +93,7 @@ def edit_established(request):
 
 def new_item(request):
     context = {}
-    return render(request, 'item_new.html', context)
+    return render(request, 'create_dish.html', context)
 
 
 def register(request):

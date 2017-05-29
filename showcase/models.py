@@ -17,7 +17,8 @@ class Tag(models.Model):
 class Dish(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    image = models.FileField()
+    icon = models.ImageField()
+    image = models.ImageField()
     tags = models.ManyToManyField(Tag, blank=True)
     description = models.CharField(max_length=300)
     stock = models.PositiveSmallIntegerField()

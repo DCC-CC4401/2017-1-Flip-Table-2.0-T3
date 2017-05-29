@@ -29,10 +29,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.humanize',
     'account.apps.AccountConfig',
     'map.apps.MapConfig',
     'showcase.apps.ShowcaseConfig',
+    'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

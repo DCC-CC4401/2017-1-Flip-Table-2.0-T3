@@ -198,6 +198,7 @@
     "fields": {
       "user": 3,
       "name": "carne mongoliana",
+      "icon": "default/rice.png",
       "image": "default/rice.png",
       "description": "La carne mongoliana m\u00e1s rica que hayan probado",
       "stock": 20,
@@ -215,6 +216,7 @@
     "fields": {
       "user": 3,
       "name": "pollo mongoliano",
+      "icon": "default/rice.png",
       "image": "default/rice.png",
       "description": "El pollo mongoliano mas ricoque hayan probado",
       "stock": 10,
@@ -232,6 +234,7 @@
     "fields": {
       "user": 7,
       "name": "empanada de pino",
+      "icon": "default/rice.png",
       "image": "default/rice.png",
       "description": "Empanada cacera con pino de carne mechada",
       "stock": 15,
@@ -247,6 +250,7 @@
     "fields": {
       "user": 7,
       "name": "empanada de queso",
+      "icon": "default/rice.png",
       "image": "default/rice.png",
       "description": "Empanada hecha con queso de campo",
       "stock": 5,
@@ -264,6 +268,7 @@
     "fields": {
       "user": 4,
       "name": "arroz con pollo",
+      "icon": "default/rice.png",
       "image": "default/rice.png",
       "description": "El mejor lunchbox que has omido",
       "stock": 8,
@@ -281,6 +286,7 @@
     "fields": {
       "user": 5,
       "name": "sushi tempura",
+      "icon": "default/rice.png",
       "image": "default/rice.png",
       "description": "Sushi relleno de pollo, queso crema y ciboulette",
       "stock": 12,
@@ -296,6 +302,7 @@
     "fields": {
       "user": 6,
       "name": "lasagna",
+      "icon": "default/rice.png",
       "image": "default/rice.png",
       "description": "Lasagna cacera con pino de lomo liso y pasas carozzi",
       "stock": 3,

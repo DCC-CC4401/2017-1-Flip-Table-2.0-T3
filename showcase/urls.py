@@ -18,8 +18,8 @@ urlpatterns = [
     # /showcase/<seller_id>/checkin
     url(r'^(?P<seller_id>[0-9]+)/check_in/$', views.check_in, name='check_in'),
 
-    # /showcase/item_new
-    url(r'^item_new/$', views.item_new, name='item_new'),
+    # /showcase/<seller_id>/create_dish
+    url(r'^(?P<seller_id>[0-9]+)/create_dish/$', views.create_dish, name='create_dish'),
 
     url(r'^item_edit/$', views.item_edit, name='item_edit'),
 

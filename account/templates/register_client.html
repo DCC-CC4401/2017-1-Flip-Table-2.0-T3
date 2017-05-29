@@ -54,14 +54,18 @@
         </div>
     </div>
 
+
+    {% load image_filters %}
+
     <div class='row'>
         <p>Selecciona avatar:</p>
         {% for choice in form.choices %}
+            {{ choice.tag }}
             {% with i=forloop.counter|stringformat:"s" %}
-                {% with 'img/AvatarEstudiante'|add:i|add:'.png' as image_url %}
-                    {{ choice.tag }}
-                    <label for="{{ choice.id_for_label }}"><img class="circle" style="max-width: 50px;"
-                                                                src="{% static image_url %}"></label>
+                {% with form|choice_value:i as image_url %}
+                    <label for="{{ choice.id_for_label }}">
+                        <img class="circle" style="max-width: 50px;" src="{% static "img/"|add:image_url %}">
+                    </label>
                 {% endwith %}
             {% endwith %}
         {% endfor %}
