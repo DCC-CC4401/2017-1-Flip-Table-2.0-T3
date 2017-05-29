@@ -23,9 +23,9 @@
                             &ensp;Nombre del producto:
                             <div class="input-field inline ">
                                 <input placeholder="Pizza" class='validate' type='text' name='item' id='item'/>
-                                {{ form.dish_name.errors }}
-                                <label style="text-align: center" for={{ form.dish_name.id_for_label }}></label>
-                                {{ form.dish_name }}
+                                {{ form.name.errors }}
+                                <label style="text-align: center" for={{ form.name.id_for_label }}></label>
+                                {{ form.name }}
                             </div>
                         </div>
                     </div>
@@ -35,9 +35,9 @@
                             &ensp;Precio del producto:
                             <div class="input-field inline">
                                 <input placeholder="1300" class='validate' type='text' name='precio' id='precio'/>
-                                {{ form.value.errors }}
-                                <label style="text-align: center" for={{ form.value.id_for_label }}></label>
-                                {{ form.value }}
+                                {{ form.price.errors }}
+                                <label style="text-align: center" for={{ form.price.id_for_label }}></label>
+                                {{ form.price }}
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                 <div class="input-field col s12 m12">
                                     <i class="material-icons prefix">&emsp;mode_edit</i>
                                     <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                    {{ form.descripion.errors }}
+                                    {{ form.description.errors }}
                                     <label for={{ form.description.id_for_label }}>&emsp;Descripción</label>
                                     {{ form.description }}
                                 </div>
@@ -160,7 +160,7 @@
                     </div>
                     <div class='row'>
                         <a class='col l5 offset-l4 btn btn-large waves-effect button teal'
-                           href="{{ request.GET.next }}">&emsp; &emsp;Agregar<i
+                           href="{{ request.path }}">&emsp; &emsp;Agregar<i
                                 class="material-icons right">send</i></a>
                     </div>
                 </div>
