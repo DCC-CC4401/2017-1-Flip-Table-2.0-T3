@@ -118,7 +118,7 @@ def favorite_seller(request, seller_id):
     return HttpResponse(status=204)
 
 
-def checkin(request, seller_id):
+def check_in(request, seller_id):
     seller = get_object_or_404(User, id=seller_id)
     seller_profile = get_object_or_404(Peddler, user=seller)
     if seller_profile.available:
@@ -128,13 +128,6 @@ def checkin(request, seller_id):
     seller_profile.save()
     return HttpResponse(status=204)
 
-
-# def peddler_set_not_available(request, seller_id):
-#     seller = get_object_or_404(User, id=seller_id)
-#     seller_profile = get_object_or_404(Peddler, user=seller)
-#     seller_profile.available = False
-#     seller_profile.save()
-#     return HttpResponse(status=204)
 
 def creatingDish(request):
     if request.method == 'POST':

@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'^(?P<seller_id>[0-9]+)/favorite/$', views.favorite_seller, name='favorite_seller'),
 
     # /showcase/<seller_id>/checkin
-    url(r'^(?P<seller_id>[0-9]+)/checkin/$', views.checkin, name='checkin'),
+    url(r'^(?P<seller_id>[0-9]+)/check_in/$', views.check_in, name='check_in'),
 
     # /showcase/item_new
     url(r'^item_new/$', views.item_new, name='item_new'),

@@ -1,38 +1,23 @@
 {% extends 'base.html' %}
 
-{%  block active %}
-
+{% block active %}
     <div>
-    {% if isPeddler and isPeddlerInHisProfile %}
-        <li><a class="subheader">Activo</a></li>
-        {% if seller_profile.available %}
+        {% if isPeddler and isPeddlerInHisProfile %}
+            <li><a class="subheader">Activo</a></li>
             <li>
-                <a href="{% url 'showcase:checkin' seller.id %}">
-                    <div class="switch center" style="margin-left: 10px;" id="checkin">
-                        <label for="{{ seller_profile.available }}">
-                            No
-                            <input type="checkbox" checked>
-                            <span class="lever"></span>
-                            Si
-                        </label>
-                    </div>
-                </a>
-            </li>
-        {% else %}
-             <li>
-                <a href="{% url 'showcase:checkin' seller.id %}">
-                    <div class="switch center" style="margin-left: 10px;" id="checkin">
-                        <label>
-                            No
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                            Si
-                        </label>
-                    </div>
-                </a>
+
+                <div class="switch center" style="margin-left: 10px;" id="checkin">
+                    <label for="cb">
+                        No
+                        <input id="cb" type="checkbox" {% if seller_profile.available%}checked{% endif %}
+                               onclick='window.location.assign("{% url 'showcase:check_in' seller.id %}")'>
+                        <span class="lever"></span>
+                        Si
+                    </label>
+                </div>
+
             </li>
         {% endif %}
-    {% endif %}
     </div>
 {% endblock %}
 
@@ -356,7 +341,8 @@
                                                     <span class="card-title activator grey-text text-darken-4">Jugo<i
                                                             class="material-icons right">more_vert</i></span>
                                         <p><a class="teal-text">$300</a></p>
-                                        <a href="{% url 'showcase:item_edit' %}?next={{ request.path|urlencode }}" class="btn-floating activator waves-effect waves-light darken-2">
+                                        <a href="{% url 'showcase:item_edit' %}?next={{ request.path|urlencode }}"
+                                           class="btn-floating activator waves-effect waves-light darken-2">
                                             <i class="material-icons">mode_edit</i>
                                         </a>
                                     </div>
