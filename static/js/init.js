@@ -13,7 +13,7 @@
 
     $('#favorite').click(function () {
         var fc = $('#favorite_count');
-        if ($(this).text() === 'star') {
+        if ($.trim($(this).text()) === 'star') {
 
             $(this).html('star_border');
             fc.html((parseInt(fc.text()) - 1).toString())

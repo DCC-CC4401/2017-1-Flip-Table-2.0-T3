@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
-{%  block active %}
+{% block active %}
     <div>
-    {% if isPeddler and isPeddlerInHisProfile %}
-        <li><a class="subheader">Activo</a></li>
+        {% if isPeddler and isPeddlerInHisProfile %}
+            <li><a class="subheader">Activo</a></li>
             <li>
-            <a href="{% url 'showcase:checkin' seller.id %}">
-                <div class="switch center" style="margin-left: 10px;">
-                    <label>
-                        No<input type="checkbox"><span class="lever"></span>Si
-                    </label>
-                </div>
-            </a>
+                <a href="{% url 'showcase:checkin' seller.id %}">
+                    <div class="switch center" style="margin-left: 10px;">
+                        <label>
+                            No<input type="checkbox"><span class="lever"></span>Si
+                        </label>
+                    </div>
+                </a>
             </li>
-    {% endif %}
+        {% endif %}
     </div>
 {% endblock %}
 
