@@ -219,9 +219,6 @@ class PeddlerUpdateForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email')
 
-<< << << < HEAD
-== == == =
-
 def save(self, commit=True):
     if not commit:
         raise NotImplementedError("Can't create User and Profile without database save")
@@ -234,5 +231,3 @@ def save(self, commit=True):
     profile.social = self.cleaned_data['social']
     profile.save()
     return profile
-
->> >> >> > origin / develop
