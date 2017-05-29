@@ -9,6 +9,7 @@ class Peddler(models.Model):
     credit = models.BooleanField(default=False)
     debit = models.BooleanField(default=False)
     social = models.BooleanField(default=False)
+    available = models.BooleanField(default=False)
 
     def __str__(self):
         return "Peddler - " + self.user.username
