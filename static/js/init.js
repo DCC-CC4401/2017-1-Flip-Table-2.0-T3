@@ -24,10 +24,18 @@
         }
     });
 
+    $('#stock_dec').click(function () {
+        var count = $('#stock_count');
+        if (count.val() > 0) {
+            count.val((parseInt(count.val()) - 1).toString());
+        }
+    });
+
+    $('#stock_inc').click(function () {
+        var count = $('#stock_count');
+        count.val((parseInt(count.val()) + 1).toString());
+    });
+
 })
 (jQuery);
-
-
-
-
 
