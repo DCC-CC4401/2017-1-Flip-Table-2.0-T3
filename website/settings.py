@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.humanize',
     'account.apps.AccountConfig',
     'map.apps.MapConfig',
     'showcase.apps.ShowcaseConfig',
@@ -124,3 +125,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/'
+
+FORMAT_MODULE_PATH = [
+    'website.formats',
+]

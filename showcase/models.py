@@ -22,6 +22,8 @@ class Dish(models.Model):
     description = models.CharField(max_length=300)
     stock = models.PositiveSmallIntegerField()
     price = models.PositiveIntegerField()
+    visible = models.BooleanField(default=True)
+    sold = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name

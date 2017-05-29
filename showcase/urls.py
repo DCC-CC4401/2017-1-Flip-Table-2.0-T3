@@ -9,7 +9,6 @@ urlpatterns = [
     # /showcase/
     url(r'^$', views.index, name='index'),
 
-
     # /showcase/<seller_id>/
     url(r'^(?P<seller_id>[0-9]+)/$', views.showcase, name='showcase'),
 
@@ -21,6 +20,8 @@ urlpatterns = [
 
     # /showcase/item_new
     url(r'^item_new/$', views.item_new, name='item_new'),
+
+    url(r'^item_edit/$', views.item_edit, name='item_edit'),
 
     # /showcase/item/<item_id>/
     # url(r'^$', views.index, name='index'),
