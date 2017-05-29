@@ -7,9 +7,9 @@
             <li>
 
                 <div class="switch center" style="margin-left: 10px;" id="checkin">
-                    <label for="cb">
+                    <label for="available_switch">
                         No
-                        <input id="cb" type="checkbox" {% if seller_profile.available%}checked{% endif %}
+                        <input id="available_switch" type="checkbox" {% if seller_profile.available %}checked{% endif %}
                                onclick='window.location.assign("{% url 'showcase:check_in' seller.id %}")'>
                         <span class="lever"></span>
                         Si
@@ -68,22 +68,14 @@
                         </div>
                         <div class="col s6 m3 l3 center-align" id="status">
                             <h4 class="card-title flow-text text-darken-4">Estado</h4>
-                            {% if not isPeddler %}
-                                <!--If Established isAvailable Disponible else No Disponible-->
-                                {% if isAvailable %}
-                                    <p class="medium-small flow-text light-green-text">Disponible</p>
-                                {% else %}
-                                    <p class="medium-small flow-text grey-text center">No Disponible</p>
-                                {% endif %}
-                            {% else %}
-                                <!--If peddler.available Disponible else No Disponible-->
-                                {% if seller_profile.available %}
-                                    <p class="medium-small flow-text light-green-text">Disponible</p>
-                                {% else %}
-                                    <p class="medium-small flow-text grey-text center">No Disponible</p>
-                                {% endif %}
 
+                            <p id="available" class="medium-small flow-text center
+                            {% if seller_profile.available %}
+                                light-green-text">Disponible
+                            {% else %}
+                                grey-text">No Disponible
                             {% endif %}
+                            </p>
                         </div>
                         <div class="col s6 m3 l3 center-align">
                             <h4 class=" grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de

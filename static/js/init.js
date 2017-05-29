@@ -36,6 +36,18 @@
         count.val((parseInt(count.val()) + 1).toString());
     });
 
+    $('#available_switch').click(function () {
+        var av = $('#available');
+        if ($.trim(av.text()) === 'Disponible') {
+            av.html('No Disponible');
+            av.removeClass("light-green-text").addClass("grey-text")
+        }
+        else {
+            av.html('Disponible');
+            av.removeClass("grey-text").addClass("light-green-text")
+        }
+    });
+
 })
 (jQuery);
 
