@@ -84,7 +84,7 @@
                             {% endif %}
                         </div>
                         <div class="col s6 m3 l3 center-align">
-                            <h4 class=" center grey-text flow-text text-darken-4" style="font-size: 1.3rem;">Formas de
+                            <h4 class=" center grey-text flow-text text-darken-4" >Formas de
                                 pago</h4>
                             {% if seller_profile.cash %}
                                 <p class="medium-small flow-text grey-text center">Efectivo</p>
@@ -101,43 +101,30 @@
                         </div>
 
                         <div class="col s6 m3 l3 center-align">
-                            <a class="switch" style="margin-left: 10px;">
-                                <h4 class="card-title grey-text flow-text text-darken-4">Favorito</h4>
-                                {% if isClient %}
-                                    <a href="{% url 'showcase:favorite_seller' seller.id %}">
-                                        <i id="favorite" class=" material-icons amber-text">
-                                            {% if isFavorite %}
-                                                star
-                                            {% else %}
-                                                star_border
-                                            {% endif %}
-                                        </i>
-                                    </a>
-                                    <span id="favorite_count" class=" grey-text flow-text text-darken-4"
-                                          style="font-size:24px; line-height:35px;">{{ favorite }}</span>
-                                {% else %}
-                                    <h6>
+                            <h4 class="card-title grey-text flow-text text-darken-4">Favorito</h4>
+                            {% if isClient %}
+                                <a href="{% url 'showcase:favorite_seller' seller.id %}">
+                                    <i id="favorite" class=" material-icons amber-text">
+                                        {% if isFavorite %}
+                                            star
+                                        {% else %}
+                                            star_border
+                                        {% endif %}
+                                    </i>
+                                </a>
+                                <span id="favorite_count" class=" grey-text flow-text text-darken-4"
+                                      style="font-size:24px; line-height:35px;">{{ favorite }}</span>
+                            {% else %}
+                                <h6>
                                     <i class="material-icons amber-text">star_border</i>
                                     <span class=" grey-text flow-text text-darken-4"
                                           style="font-size:24px; line-height:35px;">{{ favorite }}</span>
-                                {% endif %}
                                 </h6>
-                            </a>
+                            {% endif %}
                         </div>
                     </div>
-
-
-                </div>
-
-                <!--If seller is in his profile-->
-                <div class="col s3 l2 right-align">
-                    <a class="btn-floating activator waves-effect waves-light darken-2">
-                        <i class="material-icons">mode_edit</i>
-                    </a>
                 </div>
             </div>
-
-
         </div>
 
         <div id="profile-page-content" class="row">
@@ -348,10 +335,7 @@
                                                     <span class="card-title activator grey-text text-darken-4">Jugo<i
                                                             class="material-icons right">more_vert</i></span>
                                         <p><a class="teal-text">$300</a></p>
-                                        <a href="{% url 'showcase:item_edit' %}?next={{ request.path|urlencode }}"
-                                           class="btn-floating activator waves-effect waves-light darken-2">
-                                            <i class="material-icons">mode_edit</i>
-                                        </a>
+
                                     </div>
                                     <div class="card-reveal">
                                                     <span class="card-title grey-text text-darken-4">Jugo<i

@@ -231,3 +231,4 @@ class PeddlerUpdateForm(forms.ModelForm):
         profile.social = self.cleaned_data['social']
         profile.save()
         return profile
+
