@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
 from django.contrib import messages
+from django.contrib.auth import views as auth_views
 
 
 @login_required(login_url='/account/login')
@@ -19,7 +20,9 @@ def password_reset_done(request):
 
 @login_required(login_url='/account/login')
 def confirm_deleted(request):
-    request.user.delete()
+    user = request.user
+    auth_views.logout(request)
+    user.delete()
     messages.add_message(request, messages.SUCCESS, "Usuario eliminado exitosamente")
     return render(request, 'deleted_confirmation.html')
 
