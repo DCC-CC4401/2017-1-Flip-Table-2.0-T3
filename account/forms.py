@@ -206,13 +206,14 @@ class PeddlerUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PeddlerUpdateForm, self).__init__(*args, **kwargs)
+        self.profile = Peddler.objects.get(user=self.instance)
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
         self.fields['first_name'].widget.attrs.update({'autofocus': 'autofocus'})
-        self.fields['cash'].widget.attrs.update({'class': 'filled-in'})
-        self.fields['credit'].widget.attrs.update({'class': 'filled-in'})
-        self.fields['debit'].widget.attrs.update({'class': 'filled-in'})
-        self.fields['social'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['cash'].set(True)
+        self.fields['credit'].set(True)
+        self.fields['debit'].set(True)
+        self.fields['social'].set(True)
         self.fields['choices'].widget.attrs.update({'class': 'with-gap'})
 
     class Meta:
@@ -222,13 +223,12 @@ class PeddlerUpdateForm(forms.ModelForm):
     def save(self, commit=True):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
-        profile = Peddler.objects.get(user=self.instance)
-        print(profile)
-        profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
-        profile.cash = self.cleaned_data['cash']
-        profile.credit = self.cleaned_data['credit']
-        profile.debit = self.cleaned_data['debit']
-        profile.social = self.cleaned_data['social']
-        profile.save()
-        return profile
+        print(self.profile)
+        self.profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
+        self.profile.cash = self.cleaned_data['cash']
+        self.profile.credit = self.cleaned_data['credit']
+        self.profile.debit = self.cleaned_data['debit']
+        self.profile.social = self.cleaned_data['social']
+        self.profile.save()
+        return self.profile
 

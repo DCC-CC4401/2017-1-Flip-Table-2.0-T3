@@ -9,11 +9,16 @@ def user_profile_image(request):
         try:
             current_user_profile = Client.objects.get(user=current_user)
             is_client = True
-        except:
+        except Exception as e:
+            print(e)
             try:
                 current_user_profile = Established.objects.get(user=current_user)
-            except:
-                current_user_profile = Peddler.objects.get(user=current_user)
+            except Exception as e:
+                print(e)
+                try:
+                    current_user_profile = Peddler.objects.get(user=current_user)
+                except:
+                    current_user_profile = current_user
     else:
         current_user_profile = current_user
 

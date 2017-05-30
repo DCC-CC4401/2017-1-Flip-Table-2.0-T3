@@ -37,7 +37,7 @@ def edit_user(request):
     elif Established.objects.filter(user=request.user).exists():
         return redirect('account:edit_established')
     else:
-        return redirect('map:index')
+        return redirect('admin')
 
 
 @login_required(login_url='/account/login')
