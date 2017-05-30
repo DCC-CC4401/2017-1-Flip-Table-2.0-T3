@@ -25,8 +25,7 @@ class DishForm(forms.ModelForm):
         ('18', 'spaguetti.png',),
         ('19', 'rice.png',))
     choices = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
-    image = forms.ImageField()
 
     class Meta:
         model = Dish
-        fields = ['name', 'price', 'stock', 'description']
+        fields = ['name', 'price', 'stock', 'description', 'image']

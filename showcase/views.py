@@ -168,7 +168,6 @@ def update_dish(request, seller_id, dish_id):
         form = DishForm(data=request.POST, files=request.FILES, instance=dish)
         if form.is_valid():
             dish.icon = "default/" + dict(form.fields['choices'].choices)[form.cleaned_data['choices']]
-            dish.image = request.FILES['image']
             form.save()
             return redirect('showcase:showcase', seller_id)
     else:
