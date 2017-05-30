@@ -210,10 +210,10 @@ class PeddlerUpdateForm(forms.ModelForm):
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
         self.fields['first_name'].widget.attrs.update({'autofocus': 'autofocus'})
-        self.fields['cash'].set(True)
-        self.fields['credit'].set(True)
-        self.fields['debit'].set(True)
-        self.fields['social'].set(True)
+        self.fields['cash'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['credit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['debit'].widget.attrs.update({'class': 'filled-in'})
+        self.fields['social'].widget.attrs.update({'class': 'filled-in'})
         self.fields['choices'].widget.attrs.update({'class': 'with-gap'})
 
     class Meta:
