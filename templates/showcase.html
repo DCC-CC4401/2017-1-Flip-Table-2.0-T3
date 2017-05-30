@@ -187,24 +187,25 @@
                                                               method="post">
                                                             {% csrf_token %}
                                                             <div>Stock:</div>
-                                                            <a id="stock_dec"
+                                                            <a id="stock_dec{{ dish.id }}"
                                                                class="btn-floating waves-effect waves-light red btn-small">
                                                                 <i class="material-icons">remove</i>
                                                             </a>
                                                             <input type="hidden" name="dish_id" value="{{ dish.id }}">
-                                                            <input id="stock_count" value="{{ dish.stock }}"
+                                                            <input id="stock_count{{ dish.id }}"
+                                                                   value="{{ dish.stock }}"
                                                                    type="number" name="stock_count"
                                                                    min="0" step="1" class="validate"
                                                                    style="height: 1.5em; width: 30%; text-align: center">
                                                             <label for="stock_count"></label>
-                                                            <a id="stock_inc"
+                                                            <a id="stock_inc{{ dish.id }}"
                                                                class="btn-floating waves-effect waves-light red btn-small">
                                                                 <i class="material-icons">add</i>
                                                             </a>
-                                                            <input type="submit" id="update_stock"
+                                                            <input type="submit" id="update_stock{{ dish.id }}"
                                                                    style="display: none">
-                                                            <label for="update_stock">
-                                                                <a id="stock_inc"
+                                                            <label for="update_stock{{ dish.id }}">
+                                                                <a id="stock_ok{{ dish.id }}"
                                                                    class="btn-floating waves-effect waves-light green btn-small">
                                                                     <i class="material-icons">check</i>
                                                                 </a>

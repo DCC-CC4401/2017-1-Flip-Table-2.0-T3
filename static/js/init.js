@@ -24,17 +24,20 @@
         }
     });
 
-    $('#stock_dec').click(function () {
-        var count = $('#stock_count');
+    $("[id^=stock_dec]").click(function () {
+        var num = this.id.slice('stock_dec'.length);
+        var count = $('#stock_count' + num);
         if (count.val() > 0) {
             count.val((parseInt(count.val()) - 1).toString());
         }
     });
 
-    $('#stock_inc').click(function () {
-        var count = $('#stock_count');
+    $("[id^=stock_inc]").click(function () {
+        var num = this.id.slice('stock_inc'.length);
+        var count = $('#stock_count' + num);
         count.val((parseInt(count.val()) + 1).toString());
     });
+
 
     $('#available_switch').click(function () {
         var av = $('#available');
