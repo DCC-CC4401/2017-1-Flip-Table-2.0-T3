@@ -135,7 +135,7 @@ def check_in(request, seller_id):
 
 
 def create_dish(request, seller_id):
-    form = DishCreateForm(request.POST or None)
+    form = DishCreateForm(request.POST or None, request.FILES or None)
     user = get_object_or_404(User, id=seller_id)
     if form.is_valid():
         dishes = user.dish_set.all()
@@ -148,8 +148,9 @@ def create_dish(request, seller_id):
                 return render(request, 'create_dish.html', context)
         dish = form.save(commit=False)
         dish.icon = "default/" + dict(form.fields['choices'].choices)[form.cleaned_data['choices']]
-        dish.image = "default/rice.png"
         dish.user = user
+        dish.image = request.FILES['image']
+        # print(dish.image)
         dish.save()
         return redirect('showcase:showcase', seller_id)
     context = {
