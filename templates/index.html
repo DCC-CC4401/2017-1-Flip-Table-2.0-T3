@@ -1,4 +1,30 @@
 {% extends 'base.html' %}
+
+{% block filter %}
+    <li><a class="subheader">Filtros</a></li>
+    <li>
+        <div class="switch" style="margin-left: 10px;">
+            <label>
+                <input type="checkbox"><span class="lever"></span>Sólo mostrar favoritos
+            </label>
+        </div>
+    </li>
+    <li>
+        <div class="switch" style="margin-left: 10px;">
+            <label>
+                <input type="checkbox"><span class="lever"></span>Snacks
+            </label>
+        </div>
+    </li>
+    <li>
+        <div class="switch" style="margin-left: 10px;">
+            <label>
+                <input type="checkbox"><span class="lever"></span>Almuerzos
+            </label>
+        </div>
+    </li>
+{% endblock %}
+
 {% block content %}
 
     <script>

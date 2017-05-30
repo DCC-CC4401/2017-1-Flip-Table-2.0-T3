@@ -42,7 +42,13 @@
                     <img class="circle" src="{% static "img/AvatarPenguin.png" %}">
                     <span class="white-text name">Invitado</span>
                 {% else %}
-                    <img class="circle" src="{{ image.url }}" alt="Avatar">
+                    {% if not is_client %}
+                        <a href="{% url 'showcase:showcase' user.id %}">
+                            <img class="circle" src="{{ current_user_profile.image.url }}" alt="Avatar">
+                        </a>
+                    {% else %}
+                        <img class="circle" src="{{ current_user_profile.image.url }}" alt="Avatar">
+                    {% endif %}
                     <a href="{% url 'account:edit_user' %}"><i class="material-icons right grey-text text-lighten-2"
                                                                style="position: absolute; bottom: 0.2em; right: 0.2em; padding: 0 0 !important;">settings</i></a>
                     <span class="white-text name">Hola {{ user.first_name }}!</span>
@@ -62,45 +68,21 @@
 
         <!-- Boton de vendedor activo -->
 
-        {% block active %}
-
-        {% endblock %}
-
-
-        <!-- Boton de filtros -->
-        {% if user.is_client %}
-            {% block filter %}
-                <li><a class="subheader">Filtros</a></li>
-                <li>
-                    <div class="switch" style="margin-left: 10px;">
-                        <label>
-                            <input type="checkbox"><span class="lever"></span>Sólo mostrar favoritos
-                        </label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch" style="margin-left: 10px;">
-                        <label>
-                            <input type="checkbox"><span class="lever"></span>Snacks
-                        </label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch" style="margin-left: 10px;">
-                        <label>
-                            <input type="checkbox"><span class="lever"></span>Almuerzos
-                        </label>
-                    </div>
-                </li>
-            {% endblock %}
-        {% else %}
+        {% if not is_client %}
             {% if user.is_authenticated %}
                 <li><a href="{% url 'showcase:statistics' %}"><i class="material-icons">trending_up</i>Ver
                     estadísticas</a></li>
             {% endif %}
         {% endif %}
 
+        {% block active %}
 
+        {% endblock %}
+
+        <!-- Boton de filtros -->
+        {% block filter %}
+
+        {% endblock %}
     </ul>
 </div>
 
