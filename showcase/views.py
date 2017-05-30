@@ -10,7 +10,7 @@ from .models import Transaction
 
 import datetime
 
-from showcase.forms import DishCreateForm, DishUpdateForm
+from showcase.forms import DishForm
 
 from account.models import Client, Peddler, Established
 from showcase.admin import Dish
@@ -135,7 +135,7 @@ def check_in(request, seller_id):
 
 
 def create_dish(request, seller_id):
-    form = DishCreateForm(request.POST or None, request.FILES or None)
+    form = DishForm(request.POST or None, request.FILES or None)
     user = get_object_or_404(User, id=seller_id)
     if form.is_valid():
         dishes = user.dish_set.all()
@@ -150,7 +150,6 @@ def create_dish(request, seller_id):
         dish.icon = "default/" + dict(form.fields['choices'].choices)[form.cleaned_data['choices']]
         dish.user = user
         dish.image = request.FILES['image']
-        # print(dish.image)
         dish.save()
         return redirect('showcase:showcase', seller_id)
     context = {
@@ -162,14 +161,21 @@ def create_dish(request, seller_id):
 def update_dish(request, seller_id, dish_id):
     dish = get_object_or_404(Dish, id=dish_id)
     if request.method == 'POST':
-        form = DishUpdateForm(data=request.POST, instance=dish)
+        form = DishForm(data=request.POST, files=request.FILES, instance=dish)
         if form.is_valid():
             dish.icon = "default/" + dict(form.fields['choices'].choices)[form.cleaned_data['choices']]
+            dish.image = request.FILES['image']
             form.save()
             return redirect('showcase:showcase', seller_id)
     else:
-        form = DishUpdateForm(instance=dish)
-    return render(request, 'update_dish.html', {'form': form})
+        form = DishForm(instance=dish)
+    return render(request, 'update_dish.html', {'form': form, 'seller_id': seller_id, 'dish_id': dish_id})
+
+
+def delete_dish(request, seller_id, dish_id):
+    dish = get_object_or_404(Dish, id=dish_id)
+    dish.delete()
+    return redirect('showcase:showcase', seller_id)
 
 
 def statistics(request):

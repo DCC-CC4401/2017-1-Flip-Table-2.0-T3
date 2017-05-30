@@ -12,7 +12,7 @@
             <div class="z-depth-1 grey lighten-4 row"
                  style="margin-left: 2%; margin-right: 2%; padding: 30px 30px 0px 30px; border: 1px solid #EEE;">
 
-                <form class="col s12 m12" method="post">
+                <form class="col s12 m12" role="form" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class='row'>
                         <div class='col s12 m12'>
@@ -67,17 +67,11 @@
 
 
                     {% load image_filters %}
-
-                    <div>
-                        Selecciona una imagen previa:
-                    </div>
-
-
+                    <p>Selecciona un ícono:</p>
                     {% for choice in form.choices %}
-
+                        {{ choice.tag }}
                         {% with i=forloop.counter|stringformat:"s" %}
                             {% with form|choice_value:i as image_url %}
-                                {{ choice.tag }}
                                 <label for="{{ choice.id_for_label }}">
                                     <img class="circle" style="max-width: 50px;"
                                          src="{% static "img/"|add:image_url %}">
@@ -85,21 +79,21 @@
                             {% endwith %}
                         {% endwith %}
                     {% endfor %}
-                    <p>
-                        {{ form.image.errors }}
-                        Imagen del producto:
-                        {{ form.image }}
-                    </p>
+
+                    <p>{{ form.image.errors }}</p>
+                    <p>Imagen del producto:</p>
+                    <p>{{ form.image }}</p>
 
                     <div class='row center'>
-                        <input id="update_dish" type="submit" style="display: none">
-                        <label for="update_dish" class='center l5 offset-l4 btn btn-large waves-effect button teal'>Aceptar<i
+                        <input id="create_dish" type="submit" style="display: none">
+                        <label for="create_dish" class='center l5 offset-l4 btn btn-large waves-effect button teal'>Aceptar<i
                                 class="material-icons right">send</i></label>
                     </div>
                 </form>
             </div>
         </div>
-
-
+        <div style="text-align: center; padding-bottom: 30px">
+            <a onclick="return confirm('¿Está seguro?')" href="{% url 'showcase:delete_dish' seller_id dish_id%}">Eliminar plato</a>
+        </div>
     </main>
 {% endblock %}
