@@ -139,7 +139,11 @@ class ClientUpdateForm(forms.ModelForm):
     def save(self, commit=True):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
-        profile = self.instance
+        self.instance.first_name = self.cleaned_data['first_name']
+        self.instance.last_name = self.cleaned_data['last_name']
+        self.instance.email = self.cleaned_data['email']
+        self.instance.save()
+        profile = Client.objects.get(user=self.instance)
         profile.first_name = self.cleaned_data['first_name']
         profile.last_name = self.cleaned_data['last_name']
         profile.email = self.cleaned_data['email']
@@ -182,10 +186,11 @@ class EstablishedUpdateForm(forms.ModelForm):
     def save(self, commit=True):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
-        profile = self.instance
-        profile.first_name = self.cleaned_data['first_name']
-        profile.last_name = self.cleaned_data['last_name']
-        profile.email = self.cleaned_data['email']
+        self.instance.first_name = self.cleaned_data['first_name']
+        self.instance.last_name = self.cleaned_data['last_name']
+        self.instance.email = self.cleaned_data['email']
+        self.instance.save()
+        profile = Established.objects.get(user=self.instance)
         profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
         profile.cash = self.cleaned_data['cash']
         profile.credit = self.cleaned_data['credit']
@@ -228,7 +233,11 @@ class PeddlerUpdateForm(forms.ModelForm):
     def save(self, commit=True):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
-        profile = self.instance
+        self.instance.first_name = self.cleaned_data['first_name']
+        self.instance.last_name = self.cleaned_data['last_name']
+        self.instance.email = self.cleaned_data['email']
+        self.instance.save()
+        profile = Peddler.objects.get(user=self.instance)
         profile.first_name = self.cleaned_data['first_name']
         profile.last_name = self.cleaned_data['last_name']
         profile.email = self.cleaned_data['email']
