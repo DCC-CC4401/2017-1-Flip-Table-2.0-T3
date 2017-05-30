@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="section"></div>
+    <main>
+        <div class="section"></div>
+
+        <h3 style="text-align: center;" class="teal-text">¡Registrado con éxito!</h3>
+        <div class="section" align="center">
+            <h4 style="align-content: center">Tu cuenta ha sido creada exitosamente, puedes presionar el botón para
+                iniciar sesión y comenzar a navegar</h4>
+        </div>
+
+        <form class="col s12" method="post" style="align-content: center">
+            <div class='row' align="center">
+                <a href="{% url 'account:login' %}">
+                    <button type='button' class='center l6 offset-l3 btn btn-large waves-effect teal'>
+                        Iniciar sesión
+                    </button>
+                </a>
+            </div>
+        </form>
+
+        <div class="section"></div>
+        <div class="section"></div>
+    </main>
+{% endblock %}

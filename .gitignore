@@ -144,3 +144,7 @@ compiled/
 
 # SQLite
 *.sqlite3
+
+# Migrations directories
+migrations/
+!/account/views.py

@@ -1,18 +1,3 @@
-"""flipTable URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url
 from django.contrib import admin
 from . import views
@@ -24,13 +9,28 @@ urlpatterns = [
     # /showcase/
     url(r'^$', views.index, name='index'),
 
+    # /showcase/<seller_id>/
+    url(r'^(?P<seller_id>[0-9]+)/$', views.showcase, name='showcase'),
 
-    # /showcase/<user_nick>/
-    #url(r'^$', views.index, name='index'),
+    # /showcase/<seller_id>/favorite
+    url(r'^(?P<seller_id>[0-9]+)/favorite/$', views.favorite_seller, name='favorite_seller'),
 
+    # /showcase/<seller_id>/checkin
+    url(r'^(?P<seller_id>[0-9]+)/check_in/$', views.check_in, name='check_in'),
 
-    # /showcase/item/new
-    url(r'^item_new/$', views.item_new, name='item_new'),
+    # /showcase/<seller_id>/create_dish
+    url(r'^(?P<seller_id>[0-9]+)/create_dish/$', views.create_dish, name='create_dish'),
+
+    # /showcase/<seller_id>/update_dish/<dish_id>
+    url(r'^(?P<seller_id>[0-9]+)/update_dish/(?P<dish_id>[0-9]+)/$', views.update_dish, name='update_dish'),
+
+    # /showcase/<seller_id>/update_dish/<dish_id>/delete
+    url(r'^(?P<seller_id>[0-9]+)/delete_dish/(?P<dish_id>[0-9]+)$', views.delete_dish, name='delete_dish'),
+
+    # /showcase/<seller_id>/checkin
+    url(r'^statistics/$', views.statistics, name='statistics'),
+
+    url(r'^item_edit/$', views.item_edit, name='item_edit'),
 
     # /showcase/item/<item_id>/
     # url(r'^$', views.index, name='index'),

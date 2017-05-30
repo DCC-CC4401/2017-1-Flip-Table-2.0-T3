@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ShowcaseConfig(AppConfig):
+class MapConfig(AppConfig):
     name = 'map'

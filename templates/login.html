@@ -4,7 +4,7 @@
     <main>
         <div class="section"></div>
 
-        <h5 style="text-align: center;" class="teal-text">Inicia Sesión</h5>
+        <h5 style="text-align: center;" class="teal-text">Iniciar Sesión</h5>
         <div class="section"></div>
 
         <div class="container">
@@ -12,27 +12,27 @@
                  style="margin-left: 2%; margin-right: 2%; padding: 30px 30px 0 30px; border: 1px solid #EEE;">
 
                 <form class="col s12" method="post">
-
+                    {% csrf_token %}
                     <div class='row'>
                         <div class='input-field col s12 m12'>
-                            <input class='validate' type='email' name='email' id='email'/>
-                            <label style="text-align: center;" for='email'>Ingresa tu correo</label>
+                            <label style="text-align: center;" for='{{ form.username.id_for_label }}'>Ingresa tu nombre de usuario</label>
+                            {{ form.username }}
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input class='validate' type='password' name='password' id='password'/>
-                            <label style="text-align: center;" for='password'>Ingresa tu contraseña</label>
+                            <label style="text-align: center;" for='{{ form.password.id_for_label }}'>Ingresa tu contraseña</label>
+                            {{ form.password }}
                         </div>
                         <label style='float: right;'>
-                            <a class='red-text text-accent-2' href='#'><b>¿Olvidaste tu contraseña?</b></a>
+                            <a class='red-text text-accent-2' href='{% url 'account:password_reset' %}'><b>¿Olvidaste tu contraseña?</b></a>
                         </label>
                     </div>
 
 
-                    <div class='row'>
-                        <button type='submit' name='btn_login' class='col l6 offset-l3 btn btn-large waves-effect teal'>
+                    <div class='row center'>
+                        <button type='submit' name='btn_login' class='center l6 offset-l3 btn btn-large waves-effect teal'>
                             Iniciar sesión
                         </button>
                     </div>
