@@ -140,6 +140,9 @@ class ClientUpdateForm(forms.ModelForm):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
         profile = self.instance
+        profile.first_name = self.cleaned_data['first_name']
+        profile.last_name = self.cleaned_data['last_name']
+        profile.email = self.cleaned_data['email']
         print(profile)
         profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
         profile.save()
@@ -180,6 +183,9 @@ class EstablishedUpdateForm(forms.ModelForm):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
         profile = self.instance
+        profile.first_name = self.cleaned_data['first_name']
+        profile.last_name = self.cleaned_data['last_name']
+        profile.email = self.cleaned_data['email']
         profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
         profile.cash = self.cleaned_data['cash']
         profile.credit = self.cleaned_data['credit']
@@ -206,7 +212,6 @@ class PeddlerUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PeddlerUpdateForm, self).__init__(*args, **kwargs)
-        self.profile = Peddler.objects.get(user=self.instance)
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
         self.fields['first_name'].widget.attrs.update({'autofocus': 'autofocus'})
@@ -223,12 +228,15 @@ class PeddlerUpdateForm(forms.ModelForm):
     def save(self, commit=True):
         if not commit:
             raise NotImplementedError("Can't create User and Profile without database save")
-        print(self.profile)
-        self.profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
-        self.profile.cash = self.cleaned_data['cash']
-        self.profile.credit = self.cleaned_data['credit']
-        self.profile.debit = self.cleaned_data['debit']
-        self.profile.social = self.cleaned_data['social']
-        self.profile.save()
-        return self.profile
+        profile = self.instance
+        profile.first_name = self.cleaned_data['first_name']
+        profile.last_name = self.cleaned_data['last_name']
+        profile.email = self.cleaned_data['email']
+        profile.image = "default/" + dict(self.fields['choices'].choices)[self.cleaned_data['choices']]
+        profile.cash = self.cleaned_data['cash']
+        profile.credit = self.cleaned_data['credit']
+        profile.debit = self.cleaned_data['debit']
+        profile.social = self.cleaned_data['social']
+        profile.save()
+        return profile
 

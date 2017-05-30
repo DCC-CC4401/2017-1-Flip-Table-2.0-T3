@@ -67,7 +67,7 @@ def edit_peddler(request):
         form = PeddlerUpdateForm(data=request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.add_message(request, 25, "Has editado con éxito tu información")
+            messages.add_message(request, messages.SUCCESS, "Has editado con éxito tu información")
             return redirect('map:index')
     else:
         form = PeddlerUpdateForm(instance=request.user)
