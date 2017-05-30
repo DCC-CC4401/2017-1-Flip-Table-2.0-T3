@@ -64,8 +64,12 @@ def showcase(request, seller_id):
             seller_profile = Established.objects.get(user=seller)
             start = seller_profile.start
             end = seller_profile.end
-            if start < now and now < end:
-                is_available = True
+            if start <= end:
+                if start <= now and now < end:
+                    is_available = True
+            else:
+                if start <= now or now < end:
+                    is_available = True
         except:
             seller_profile = get_object_or_404(Peddler, user=seller)
 
