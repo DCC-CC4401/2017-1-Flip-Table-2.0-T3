@@ -384,7 +384,7 @@
     "pk": 1,
     "fields": {
       "user": 1,
-      "image": "default/AvatarEstudiante.png",
+      "image": "default/AvatarEstudiante1.png",
       "f_peddler": [
         1,
         2
@@ -399,7 +399,7 @@
     "pk": 2,
     "fields": {
       "user": 2,
-      "image": "default/AvatarEstudiante3.png",
+      "image": "default/AvatarEstudiante2.png",
       "f_peddler": [
         2,
         3
